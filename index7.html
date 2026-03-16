@@ -286,7 +286,7 @@
             margin: 10px;
         }
 
-        /* ===== TELA DE LOGIN/CADASTRO ===== */
+        /* ===== TELA DE LOGIN ===== */
         .login-screen {
             background: rgba(17, 17, 17, 0.95);
             backdrop-filter: blur(10px);
@@ -348,39 +348,6 @@
             margin: 10px 0;
         }
 
-        .payment-warning {
-            background: #1a1a1a;
-            border: 2px solid #FFD700;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .payment-warning p {
-            color: #FFD700;
-            font-size: 1.1rem;
-            margin: 10px 0;
-        }
-
-        .payment-warning small {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        .register-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #888;
-        }
-
-        .register-link a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
         .btn-back {
             background: transparent;
             border: 2px solid #FFD700;
@@ -395,6 +362,45 @@
         .btn-back:hover {
             background: #FFD700;
             color: #0a0a0a;
+        }
+
+        /* ===== TELA DE CADASTRO (SÓ APARECE APÓS PAGAMENTO) ===== */
+        .register-screen {
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #FFD700;
+            border-radius: 40px;
+            padding: 50px;
+            max-width: 480px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+            display: none;
+        }
+
+        .register-screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .payment-badge {
+            background: #1a1a1a;
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .payment-badge p {
+            color: #FFD700;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .payment-badge .highlight {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #00ff88;
         }
 
         .error-message {
@@ -848,7 +854,7 @@
             </div>
         </div>
 
-        <!-- TELA 2: LOGIN/CADASTRO -->
+        <!-- TELA 2: LOGIN -->
         <div id="loginScreen" class="login-screen">
             <div style="text-align: center; margin-bottom: 30px;">
                 <svg width="60" height="60" viewBox="0 0 100 100">
@@ -870,15 +876,11 @@
 
             <button class="btn-action" onclick="fazerLogin()">ENTRAR</button>
 
-            <div class="register-link">
-                Não tem cadastro? <a onclick="mostrarCadastro()">CRIAR CONTA</a>
-            </div>
-
-            <button class="btn-back" onclick="voltarInicio()">VOLTAR</button>
+            <button class="btn-back" style="margin-top: 20px;" onclick="voltarInicio()">VOLTAR</button>
         </div>
 
         <!-- TELA 3: CADASTRO (SÓ APARECE APÓS PAGAMENTO) -->
-        <div id="registerScreen" class="login-screen">
+        <div id="registerScreen" class="register-screen">
             <div style="text-align: center; margin-bottom: 30px;">
                 <svg width="60" height="60" viewBox="0 0 100 100">
                     <circle cx="50" cy="30" r="20" fill="#111" stroke="#FFD700" stroke-width="3"/>
@@ -887,11 +889,11 @@
                 <h2 style="color: #FFD700; margin-top: 15px;">📝 CRIAR CONTA</h2>
             </div>
 
-            <!-- MENSAGEM IMPORTANTE: SÓ APÓS PAGAMENTO -->
-            <div class="payment-warning">
-                <p>💰 APENAS APÓS CONFIRMAÇÃO DE PAGAMENTO</p>
-                <p style="font-size: 0.9rem;">Seu acesso será liberado após a aprovação manual</p>
-                <small>Tempo estimado: até 30 minutos</small>
+            <!-- BADGE DE PAGAMENTO CONFIRMADO -->
+            <div class="payment-badge">
+                <p>💰 PAGAMENTO CONFIRMADO</p>
+                <p class="highlight">✅ Agora crie sua conta</p>
+                <p style="font-size: 0.8rem;">Acesso liberado após aprovação manual</p>
             </div>
 
             <div class="form-group">
@@ -913,10 +915,10 @@
             <div class="success-message" id="registerSuccess">✅ Cadastro realizado! Aguarde aprovação.</div>
 
             <button class="btn-action" onclick="finalizarCadastro()">CRIAR CONTA</button>
-            <button class="btn-back" onclick="voltarLogin()">VOLTAR</button>
+            <button class="btn-back" onclick="voltarParaLogin()">VOLTAR</button>
         </div>
 
-        <!-- TELA 4: PAINEL PRINCIPAL (SÓ APÓS APROVAÇÃO) -->
+        <!-- TELA 4: PAINEL PRINCIPAL -->
         <div id="mainPanel" class="main-panel">
             <div class="panel-header">
                 <div class="user-info-area">
@@ -988,7 +990,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE EDIÇÃO DE DADOS BANCÁRIOS -->
+    <!-- MODAL DE EDIÇÃO BANCÁRIA -->
     <div id="bankModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1046,37 +1048,25 @@
                 
                 let payload = '000201';
                 
-                // Merchant Account Information
                 const pixInfo = '0014BR.GOV.BCB.PIX' + 
                     '01' + chave.length.toString().padStart(2, '0') + chave;
                 payload += '26' + pixInfo.length.toString().padStart(2, '0') + pixInfo;
                 
-                // Merchant Category Code
                 payload += '52040000';
-                
-                // Moeda
                 payload += '5303986';
-                
-                // Valor
                 payload += '54' + valorFormatado.length.toString().padStart(2, '0') + valorFormatado;
-                
-                // País
                 payload += '5802BR';
                 
-                // Nome do recebedor
                 const nome = '2TAP BANK';
                 payload += '59' + nome.length.toString().padStart(2, '0') + nome;
                 
-                // Cidade
                 const cidade = 'SAO PAULO';
                 payload += '60' + cidade.length.toString().padStart(2, '0') + cidade;
                 
-                // TXID
                 const txid = descricao ? descricao.substring(0, 20) : '***';
                 const txidField = '05' + txid.length.toString().padStart(2, '0') + txid;
                 payload += '62' + txidField.length.toString().padStart(2, '0') + txidField;
                 
-                // CRC
                 payload += '6304';
                 
                 const crc = calcularCRC16(payload);
@@ -1096,7 +1086,6 @@
 
         // ==================== FUNÇÕES DE DADOS BANCÁRIOS ====================
         function abrirModalEdicao() {
-            // Carregar dados atuais
             const agencia = localStorage.getItem('agencia_' + usuarioLogado) || '0001';
             const conta = localStorage.getItem('conta_' + usuarioLogado) || '00001-0';
             
@@ -1123,7 +1112,6 @@
                 return;
             }
             
-            // Validar formato
             if (!/^\d{4}$/.test(agencia)) {
                 mostrarToast('❌ Agência deve ter 4 números');
                 return;
@@ -1139,11 +1127,9 @@
                 return;
             }
             
-            // Salvar dados
             localStorage.setItem('agencia_' + usuarioLogado, agencia);
             localStorage.setItem('conta_' + usuarioLogado, `${conta}-${digito}`);
             
-            // Atualizar display
             document.getElementById('bankInfoDisplay').innerHTML = 
                 `Agência: ${agencia} | Conta: ${conta}-${digito}`;
             
@@ -1161,11 +1147,9 @@
             
             document.getElementById('pixValorDisplay').innerText = `R$ ${valor},00`;
             
-            // Gerar código PIX válido
             const codigo = gerarPixValido('contato@2tapbank.com', valor, 'Plano ' + plano);
             document.getElementById('pixCodePagamento').innerText = codigo || 'Erro ao gerar código';
             
-            // Gerar QR Code
             if (codigo) {
                 const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(codigo)}`;
                 document.getElementById('qrCodePagamento').src = qrUrl;
@@ -1185,8 +1169,9 @@
         }
 
         function confirmarPagamento() {
+            // SÓ VAI PARA CADASTRO QUEM PAGOU
             document.getElementById('plansScreen').style.display = 'none';
-            document.getElementById('loginScreen').classList.add('active');
+            document.getElementById('registerScreen').classList.add('active');
         }
 
         function voltarInicio() {
@@ -1195,20 +1180,24 @@
             document.getElementById('plansScreen').style.display = 'block';
         }
 
+        function voltarParaLogin() {
+            document.getElementById('registerScreen').classList.remove('active');
+            document.getElementById('loginScreen').classList.add('active');
+        }
+
         // ==================== TELA 2: LOGIN ====================
         function fazerLogin() {
             const user = document.getElementById('loginUser').value;
             const pass = document.getElementById('loginPass').value;
             
-            // DONO tem acesso direto
+            // DONO tem acesso direto (não precisa de cadastro)
             if (user === DONO.usuario && pass === DONO.senha) {
                 usuarioLogado = user;
                 document.getElementById('loginScreen').classList.remove('active');
                 document.getElementById('mainPanel').classList.add('active');
                 document.getElementById('userNameDisplay').innerText = user;
                 
-                // Carregar dados bancários do dono
-                const agencia = localStorage.getItem('agenda_' + user) || '0001';
+                const agencia = localStorage.getItem('agencia_' + user) || '0001';
                 const conta = localStorage.getItem('conta_' + user) || '00001-0';
                 document.getElementById('bankInfoDisplay').innerHTML = 
                     `Agência: ${agencia} | Conta: ${conta}`;
@@ -1228,7 +1217,6 @@
                         document.getElementById('mainPanel').classList.add('active');
                         document.getElementById('userNameDisplay').innerText = user;
                         
-                        // Carregar dados bancários do usuário
                         const agencia = localStorage.getItem('agencia_' + user) || '1234';
                         const conta = localStorage.getItem('conta_' + user) || '56789-0';
                         document.getElementById('bankInfoDisplay').innerHTML = 
@@ -1242,18 +1230,8 @@
                     mostrarToast('❌ Senha incorreta!');
                 }
             } else {
-                mostrarToast('❌ Usuário não encontrado!');
+                mostrarToast('❌ Usuário não encontrado! Faça o pagamento primeiro.');
             }
-        }
-
-        function mostrarCadastro() {
-            document.getElementById('loginScreen').classList.remove('active');
-            document.getElementById('registerScreen').classList.add('active');
-        }
-
-        function voltarLogin() {
-            document.getElementById('registerScreen').classList.remove('active');
-            document.getElementById('loginScreen').classList.add('active');
         }
 
         function mostrarLogin() {
@@ -1261,7 +1239,7 @@
             document.getElementById('loginScreen').classList.add('active');
         }
 
-        // ==================== TELA 3: CADASTRO ====================
+        // ==================== TELA 3: CADASTRO (SÓ APÓS PAGAMENTO) ====================
         function finalizarCadastro() {
             const user = document.getElementById('regUser').value;
             const email = document.getElementById('regEmail').value;
