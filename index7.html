@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2TAP • Sistema Completo</title>
+    <title>2TAP • Sistema Profissional de Pix</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
@@ -33,7 +33,7 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,215,0,0.03) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
+            animation: rotate 40s linear infinite;
             z-index: 0;
         }
 
@@ -49,28 +49,16 @@
             z-index: 10;
         }
 
+        /* ===== TELA DE PLANOS (PÚBLICA) ===== */
         .plans-screen {
-            background: #111;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
             border: 1px solid #FFD700;
             border-radius: 40px;
             padding: 50px;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
-        }
-
-        .vip-badge-dono {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            color: #0a0a0a;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            z-index: 30;
-            border: 2px solid #0a0a0a;
         }
 
         .plans-screen::before {
@@ -84,52 +72,53 @@
             animation: rotate 20s linear infinite;
         }
 
-        .header-gold {
+        .header-premium {
             text-align: center;
             margin-bottom: 40px;
             position: relative;
         }
 
-        .header-gold h1 {
+        .header-premium h1 {
             color: #FFD700;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
             letter-spacing: 2px;
-            text-shadow: 0 0 30px #FFD700;
+            text-shadow: 0 0 20px #FFD700;
         }
 
-        .header-gold p {
+        .header-premium p {
             color: #888;
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-top: 10px;
         }
 
-        .badge-2tap {
+        .badge-dono {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             background: linear-gradient(135deg, #FFD700, #DAA520);
             color: #0a0a0a;
-            padding: 5px 20px;
-            border-radius: 50px;
+            padding: 8px 20px;
+            border-radius: 30px;
             font-weight: 700;
-            display: inline-block;
-            margin-top: 15px;
+            z-index: 20;
         }
 
-        .login-button-header {
+        .login-quick {
             position: absolute;
             top: 20px;
             right: 20px;
             background: transparent;
             border: 2px solid #FFD700;
             color: #FFD700;
-            padding: 10px 25px;
+            padding: 8px 20px;
             border-radius: 30px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            z-index: 20;
         }
 
-        .login-button-header:hover {
+        .login-quick:hover {
             background: #FFD700;
             color: #0a0a0a;
         }
@@ -138,19 +127,15 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
-            margin-bottom: 40px;
-            position: relative;
-            margin-top: 60px;
+            margin: 40px 0;
         }
 
         .plan-card {
             background: #1a1a1a;
             border: 1px solid #FFD700;
             border-radius: 30px;
-            padding: 30px 25px;
+            padding: 30px;
             transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
             cursor: pointer;
         }
 
@@ -161,28 +146,7 @@
 
         .plan-card.selected {
             border: 3px solid #FFD700;
-            background: linear-gradient(135deg, #1a1a1a, #222);
             box-shadow: 0 0 50px rgba(255, 215, 0, 0.4);
-        }
-
-        .plan-card.selected::before {
-            content: '✅ SELECIONADO';
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: #FFD700;
-            color: #0a0a0a;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .plan-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            text-align: center;
         }
 
         .plan-name {
@@ -190,12 +154,12 @@
             font-size: 1.8rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 15px;
+            margin: 20px 0;
         }
 
         .plan-price {
             text-align: center;
-            margin-bottom: 25px;
+            margin: 20px 0;
         }
 
         .price-value {
@@ -206,12 +170,11 @@
 
         .price-period {
             color: #888;
-            font-size: 0.9rem;
         }
 
         .plan-features {
             list-style: none;
-            margin-bottom: 30px;
+            margin: 30px 0;
         }
 
         .plan-features li {
@@ -227,10 +190,9 @@
             content: '✓';
             color: #FFD700;
             font-weight: 700;
-            font-size: 1.2rem;
         }
 
-        .btn-select-plan {
+        .btn-select {
             width: 100%;
             padding: 15px;
             background: transparent;
@@ -238,19 +200,19 @@
             border-radius: 15px;
             color: #FFD700;
             font-weight: 700;
-            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .btn-select-plan:hover {
+        .btn-select:hover {
             background: #FFD700;
             color: #0a0a0a;
         }
 
+        /* ===== ÁREA DE PAGAMENTO ===== */
         .payment-area {
             background: #1a1a1a;
-            border: 1px solid #FFD700;
+            border: 2px solid #FFD700;
             border-radius: 30px;
             padding: 40px;
             margin-top: 30px;
@@ -259,66 +221,34 @@
 
         .payment-area.active {
             display: block;
+            animation: slideIn 0.3s ease;
         }
 
-        .payment-title {
-            color: #FFD700;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .selected-plan-info {
+        .pix-display {
             background: #222;
+            border: 2px dashed #FFD700;
             border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .selected-plan-name {
-            color: #FFD700;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .selected-plan-price {
-            color: #FFD700;
-            font-size: 2rem;
-            font-weight: 800;
-        }
-
-        .pix-area {
-            background: #222;
-            border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
             margin: 20px 0;
-            border: 2px dashed #FFD700;
         }
 
-        .pix-value {
-            font-size: 3.5rem;
+        .pix-value-large {
+            font-size: 3rem;
             color: #FFD700;
             font-weight: 800;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin: 20px 0;
         }
 
-        .qr-code-box {
+        .qr-box {
             background: white;
             border-radius: 20px;
             padding: 20px;
             display: inline-block;
             margin: 20px 0;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        .qr-code-box img {
+        .qr-box img {
             width: 220px;
             height: 220px;
         }
@@ -327,129 +257,77 @@
             background: #111;
             border: 2px dashed #FFD700;
             border-radius: 15px;
-            padding: 25px;
-            font-family: 'Courier New', monospace;
+            padding: 20px;
+            font-family: monospace;
             word-break: break-all;
-            margin: 30px 0;
             color: #FFD700;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .btn-copy {
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
-            border-radius: 15px;
-            color: #0a0a0a;
-            font-weight: 700;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
             margin: 20px 0;
         }
 
-        .btn-copy:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn-back {
-            background: transparent;
-            border: 2px solid #FFD700;
-            color: #FFD700;
-            padding: 12px 30px;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-right: 15px;
-        }
-
-        .btn-back:hover {
-            background: #FFD700;
-            color: #0a0a0a;
-        }
-
-        .btn-finish {
-            flex: 1;
-            padding: 12px 30px;
+        .btn-copy {
+            padding: 15px 40px;
             background: linear-gradient(135deg, #FFD700, #DAA520);
             border: none;
             border-radius: 12px;
             color: #0a0a0a;
-            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
+            margin: 10px;
         }
 
-        .btn-finish:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        .btn-confirm {
+            padding: 15px 40px;
+            background: #00ff88;
+            border: none;
+            border-radius: 12px;
+            color: #0a0a0a;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 10px;
         }
 
+        /* ===== TELA DE LOGIN/CADASTRO ===== */
         .login-screen {
-            background: #111;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
             border: 1px solid #FFD700;
             border-radius: 40px;
             padding: 50px;
-            max-width: 450px;
+            max-width: 480px;
             margin: 0 auto;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
             display: none;
         }
 
         .login-screen.active {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
 
-        .login-icon {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .login-icon svg {
-            width: 80px;
-            height: 80px;
-            fill: #FFD700;
-        }
-
-        .login-title {
-            color: #FFD700;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .login-subtitle {
-            color: #888;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 0.9rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-group {
-            width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
             color: #FFD700;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 500;
         }
 
         .form-group input {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: #1a1a1a;
             border: 2px solid #333;
-            border-radius: 12px;
+            border-radius: 15px;
             color: #FFD700;
             font-size: 1rem;
-            transition: all 0.3s;
         }
 
         .form-group input:focus {
@@ -457,22 +335,37 @@
             outline: none;
         }
 
-        .btn-login {
+        .btn-action {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: linear-gradient(135deg, #FFD700, #DAA520);
             border: none;
-            border-radius: 12px;
+            border-radius: 15px;
             color: #0a0a0a;
+            font-size: 1.2rem;
             font-weight: 700;
-            font-size: 1.1rem;
             cursor: pointer;
             margin: 10px 0;
         }
 
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        .payment-warning {
+            background: #1a1a1a;
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .payment-warning p {
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .payment-warning small {
+            color: #888;
+            font-size: 0.9rem;
         }
 
         .register-link {
@@ -488,46 +381,20 @@
             cursor: pointer;
         }
 
-        .register-screen {
-            background: #111;
-            border: 1px solid #FFD700;
-            border-radius: 40px;
-            padding: 50px;
-            max-width: 450px;
-            margin: 0 auto;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            display: none;
-        }
-
-        .register-screen.active {
-            display: block;
-        }
-
-        .register-icon {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .register-icon svg {
-            width: 80px;
-            height: 80px;
-            fill: #FFD700;
-        }
-
-        .register-title {
+        .btn-back {
+            background: transparent;
+            border: 2px solid #FFD700;
             color: #FFD700;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            text-align: center;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
         }
 
-        .register-subtitle {
-            color: #888;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 0.9rem;
+        .btn-back:hover {
+            background: #FFD700;
+            color: #0a0a0a;
         }
 
         .error-message {
@@ -550,162 +417,132 @@
             display: none;
         }
 
-        .btn-register {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
-            border-radius: 12px;
-            color: #0a0a0a;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .btn-register:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        .bank-screen {
-            background: #111;
+        /* ===== PAINEL PRINCIPAL ===== */
+        .main-panel {
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
             border: 1px solid #FFD700;
             border-radius: 40px;
             padding: 50px;
-            max-width: 450px;
-            margin: 0 auto;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
             display: none;
         }
 
-        .bank-screen.active {
+        .main-panel.active {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
 
-        .bank-icon {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .bank-icon svg {
-            width: 80px;
-            height: 80px;
-            fill: #FFD700;
-        }
-
-        .bank-title {
-            color: #FFD700;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .btn-next {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
-            border-radius: 12px;
-            color: #0a0a0a;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .btn-next:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        .pix-generator-screen {
-            background: #111;
-            border: 1px solid #FFD700;
-            border-radius: 40px;
-            padding: 50px;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            display: none;
-        }
-
-        .pix-generator-screen.active {
-            display: block;
-        }
-
-        .vip-user-badge {
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            color: #0a0a0a;
-            padding: 5px 15px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-left: 10px;
-        }
-
-        .user-info-header {
-            background: #222;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
+        .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #FFD700;
         }
 
-        .user-bank-info {
+        .user-info-area {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .user-greeting {
             color: #FFD700;
-            font-size: 1.1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        .user-bank-info span {
+        .user-bank-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .bank-info {
+            background: #1a1a1a;
+            border: 1px solid #FFD700;
+            border-radius: 30px;
+            padding: 8px 20px;
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        .btn-edit-bank {
+            background: transparent;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .btn-edit-bank:hover {
+            background: #FFD700;
+            color: #0a0a0a;
+        }
+
+        .user-status {
+            background: #00ff88;
+            color: #0a0a0a;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #1a1a1a;
+            border: 1px solid #FFD700;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .stat-title {
             color: #888;
             font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            color: #FFD700;
+            font-size: 2rem;
+            font-weight: 700;
         }
 
         .generator-title {
             color: #FFD700;
             font-size: 1.8rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .generator-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            margin: 30px 0;
         }
 
         .input-field {
-            width: 100%;
+            margin-bottom: 20px;
         }
 
         .input-field label {
             display: block;
             color: #FFD700;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 10px;
         }
 
         .input-field input {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: #1a1a1a;
             border: 2px solid #333;
-            border-radius: 12px;
+            border-radius: 15px;
             color: #FFD700;
-            font-size: 1rem;
-        }
-
-        .input-field input:focus {
-            border-color: #FFD700;
-            outline: none;
         }
 
         .btn-generate {
@@ -715,15 +552,26 @@
             border: none;
             border-radius: 15px;
             color: #0a0a0a;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
             margin: 20px 0;
         }
 
-        .btn-generate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        .key-hint {
+            text-align: center;
+            color: #888;
+            margin: 20px 0;
+            padding: 10px;
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        .key-hint kbd {
+            background: #FFD700;
+            color: #0a0a0a;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .result-area {
@@ -731,7 +579,7 @@
             border: 2px dashed #FFD700;
             border-radius: 20px;
             padding: 30px;
-            margin: 20px 0;
+            margin: 30px 0;
             display: none;
         }
 
@@ -739,16 +587,16 @@
             display: block;
         }
 
-        .qr-result {
+        .qr-code-box {
             text-align: center;
             margin: 20px 0;
         }
 
-        .qr-result img {
-            width: 200px;
-            height: 200px;
+        .qr-code-box img {
+            width: 220px;
+            height: 220px;
             border: 3px solid #FFD700;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 10px;
             background: white;
         }
@@ -756,7 +604,7 @@
         .pix-code-result {
             background: #111;
             border: 1px solid #FFD700;
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 20px;
             font-family: monospace;
             word-break: break-all;
@@ -764,139 +612,129 @@
             color: #FFD700;
         }
 
-        .contact-selector {
+        .action-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             margin: 20px 0;
         }
 
-        .contact-card {
-            background: #222;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .contact-card:hover {
-            border-color: #FFD700;
-            transform: translateY(-3px);
-        }
-
-        .contact-card.selected {
-            border: 2px solid #FFD700;
-            background: #2a2a0a;
-        }
-
-        .contact-name {
-            color: #FFD700;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .contact-number {
-            color: #888;
-            font-size: 0.8rem;
-        }
-
-        .btn-send-whatsapp {
-            width: 100%;
-            padding: 15px;
-            background: #25D366;
+        .btn-share {
+            padding: 18px;
             border: none;
             border-radius: 12px;
-            color: white;
             font-weight: 700;
-            font-size: 1.1rem;
             cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .btn-send-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-        }
-
-        .floating-support {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-        }
-
-        .support-button {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
             transition: all 0.3s;
-            border: none;
-            font-size: 24px;
         }
 
-        .support-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+        .btn-share.copy {
+            background: #1a1a1a;
+            border: 2px solid #FFD700;
+            color: #FFD700;
         }
 
-        .support-modal {
-            position: absolute;
-            bottom: 80px;
+        .btn-share.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        /* ===== MODAL DE EDIÇÃO BANCÁRIA ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
             background: #111;
             border: 2px solid #FFD700;
-            border-radius: 20px;
-            padding: 25px;
-            width: 280px;
-            display: none;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlide 0.3s ease;
         }
 
-        .support-modal.active {
-            display: block;
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        .support-modal h3 {
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .modal-header h2 {
             color: #FFD700;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .telegram-contact {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            text-align: center;
-        }
-
-        .telegram-user {
-            color: #FFD700;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 10px 0;
-        }
-
-        .btn-telegram {
-            width: 100%;
-            padding: 12px;
-            background: #0088cc;
+        .modal-close {
+            background: transparent;
             border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
+            color: #FFD700;
+            font-size: 2rem;
             cursor: pointer;
         }
 
-        .toast-message {
+        .modal-body {
+            margin-bottom: 30px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .btn-modal {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-modal.save {
+            background: #FFD700;
+            color: #0a0a0a;
+        }
+
+        .btn-modal.cancel {
+            background: transparent;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+        }
+
+        .btn-modal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .toast {
             position: fixed;
-            bottom: 100px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             background: #FFD700;
@@ -908,50 +746,41 @@
             z-index: 1000;
         }
 
-        @media (max-width: 968px) {
-            .plans-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
-            .plans-grid {
+            .plans-grid, .stats-grid {
                 grid-template-columns: 1fr;
             }
             
-            .login-button-header {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin-bottom: 20px;
+            .panel-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
 
-            .vip-badge-dono {
-                position: relative;
-                top: 0;
-                left: 0;
-                margin-bottom: 20px;
-                display: inline-block;
+            .user-bank-details {
+                justify-content: center;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- TELA 1: PLANOS -->
+        <!-- TELA 1: PLANOS (PÚBLICA) -->
         <div id="plansScreen" class="plans-screen">
-            <div class="vip-badge-dono">👑 DONO: rhyanxzk9</div>
-            <button class="login-button-header" onclick="mostrarTelaLogin()">🔐 LOGIN</button>
+            <div class="badge-dono">👑 rhyanxzk9</div>
+            <button class="login-quick" onclick="mostrarLogin()">🔐 LOGIN</button>
             
-            <div class="header-gold">
-                <h1>2TAP • GOLD</h1>
+            <div class="header-premium">
+                <h1>2TAP • BANK</h1>
                 <p>Escolha seu plano de acesso</p>
-                <div class="badge-2tap">⚡ APROVAÇÃO MANUAL ⚡</div>
             </div>
 
             <div class="plans-grid">
                 <div class="plan-card" data-plan="weekly">
-                    <div class="plan-icon">⚡</div>
                     <div class="plan-name">SEMANAL</div>
                     <div class="plan-price">
                         <span class="price-value">R$ 150</span>
@@ -960,14 +789,12 @@
                     <ul class="plan-features">
                         <li>7 dias de acesso</li>
                         <li>PIX ILIMITADO</li>
-                        <li>Todos os bancos</li>
-                        <li>Suporte prioritário</li>
+                        <li>QR Code dinâmico</li>
                     </ul>
-                    <button class="btn-select-plan" onclick="selecionarPlano('weekly', 150, 'Semanal')">SELECIONAR</button>
+                    <button class="btn-select" onclick="selecionarPlano('weekly', 150)">SELECIONAR</button>
                 </div>
 
                 <div class="plan-card" data-plan="monthly">
-                    <div class="plan-icon">🔥</div>
                     <div class="plan-name">MENSAL</div>
                     <div class="plan-price">
                         <span class="price-value">R$ 450</span>
@@ -976,14 +803,12 @@
                     <ul class="plan-features">
                         <li>30 dias de acesso</li>
                         <li>PIX ILIMITADO</li>
-                        <li>Todos os bancos</li>
-                        <li>Suporte VIP 24h</li>
+                        <li>Suporte VIP</li>
                     </ul>
-                    <button class="btn-select-plan" onclick="selecionarPlano('monthly', 450, 'Mensal')">SELECIONAR</button>
+                    <button class="btn-select" onclick="selecionarPlano('monthly', 450)">SELECIONAR</button>
                 </div>
 
                 <div class="plan-card" data-plan="yearly">
-                    <div class="plan-icon">💎</div>
                     <div class="plan-name">ANUAL</div>
                     <div class="plan-price">
                         <span class="price-value">R$ 1.500</span>
@@ -992,56 +817,46 @@
                     <ul class="plan-features">
                         <li>365 dias de acesso</li>
                         <li>PIX ILIMITADO</li>
-                        <li>Todos os bancos</li>
-                        <li>Suporte VIP 24h</li>
+                        <li>Suporte 24h</li>
                     </ul>
-                    <button class="btn-select-plan" onclick="selecionarPlano('yearly', 1500, 'Anual')">SELECIONAR</button>
+                    <button class="btn-select" onclick="selecionarPlano('yearly', 1500)">SELECIONAR</button>
                 </div>
             </div>
 
-            <!-- Área de Pagamento PIX -->
+            <!-- ÁREA DE PAGAMENTO PIX -->
             <div id="paymentArea" class="payment-area">
-                <div class="payment-title">💰 PAGAMENTO VIA PIX</div>
+                <h2 style="color: #FFD700; text-align: center; margin-bottom: 30px;">💰 PAGAMENTO VIA PIX</h2>
                 
-                <div class="selected-plan-info">
-                    <span class="selected-plan-name" id="selectedPlanName">Plano Semanal</span>
-                    <span class="selected-plan-price" id="selectedPlanPrice">R$ 150</span>
-                </div>
-
-                <div class="pix-area">
-                    <div class="pix-value" id="pixValue">R$ 150,00</div>
+                <div class="pix-display">
+                    <div class="pix-value-large" id="pixValorDisplay">R$ 150,00</div>
                     
-                    <div class="qr-code-box">
-                        <img id="qrCodeImg" src="" alt="QR Code Pix">
+                    <div class="qr-box">
+                        <img id="qrCodePagamento" src="" alt="QR Code Pix">
                     </div>
 
-                    <div class="pix-code-box" id="pixCode">
+                    <div class="pix-code-box" id="pixCodePagamento">
                         Selecione um plano para gerar o código
                     </div>
 
-                    <button class="btn-copy" onclick="copiarCodigoPix()">📋 COPIAR CÓDIGO PIX</button>
+                    <button class="btn-copy" onclick="copiarCodigoPagamento()">📋 COPIAR CÓDIGO</button>
                 </div>
 
-                <div style="display: flex; gap: 15px;">
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
                     <button class="btn-back" onclick="voltarPlanos()">VOLTAR</button>
-                    <button class="btn-finish" onclick="confirmarPagamento()">JÁ PAGUEI • CONFIRMAR</button>
+                    <button class="btn-confirm" onclick="confirmarPagamento()">✅ JÁ PAGUEI</button>
                 </div>
             </div>
         </div>
 
-        <!-- TELA 2: LOGIN -->
+        <!-- TELA 2: LOGIN/CADASTRO -->
         <div id="loginScreen" class="login-screen">
-            <div class="login-icon">
-                <svg viewBox="0 0 100 100">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <svg width="60" height="60" viewBox="0 0 100 100">
                     <circle cx="50" cy="40" r="20" fill="#111" stroke="#FFD700" stroke-width="3"/>
-                    <circle cx="35" cy="35" r="3" fill="#FFD700"/>
-                    <circle cx="65" cy="35" r="3" fill="#FFD700"/>
-                    <path d="M35 50 Q50 60,65 50" stroke="#FFD700" stroke-width="2" fill="none"/>
-                    <rect x="40" y="65" width="20" height="25" fill="#111" stroke="#FFD700" stroke-width="2"/>
+                    <rect x="40" y="65" width="20" height="25" fill="#111" stroke="#FFD700" stroke-width="3"/>
                 </svg>
+                <h2 style="color: #FFD700; margin-top: 15px;">🔐 ACESSO 2TAP</h2>
             </div>
-            <div class="login-title">🔐 ACESSO 2TAP</div>
-            <div class="login-subtitle">Digite seus dados para entrar</div>
 
             <div class="form-group">
                 <label>USUÁRIO</label>
@@ -1053,31 +868,35 @@
                 <input type="password" id="loginPass" placeholder="Sua senha">
             </div>
 
-            <button class="btn-login" onclick="fazerLogin()">ENTRAR</button>
+            <button class="btn-action" onclick="fazerLogin()">ENTRAR</button>
 
             <div class="register-link">
-                Não tem cadastro? <a onclick="mostrarCadastro()">CADASTRE-SE</a>
+                Não tem cadastro? <a onclick="mostrarCadastro()">CRIAR CONTA</a>
             </div>
-            
-            <button class="btn-back" style="margin-top: 20px;" onclick="voltarInicio()">VOLTAR</button>
+
+            <button class="btn-back" onclick="voltarInicio()">VOLTAR</button>
         </div>
 
-        <!-- TELA 3: CADASTRO -->
-        <div id="registerScreen" class="register-screen">
-            <div class="register-icon">
-                <svg viewBox="0 0 100 100">
+        <!-- TELA 3: CADASTRO (SÓ APARECE APÓS PAGAMENTO) -->
+        <div id="registerScreen" class="login-screen">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <svg width="60" height="60" viewBox="0 0 100 100">
                     <circle cx="50" cy="30" r="20" fill="#111" stroke="#FFD700" stroke-width="3"/>
                     <path d="M20 80 L80 80" stroke="#FFD700" stroke-width="3"/>
-                    <circle cx="35" cy="70" r="10" fill="#111" stroke="#FFD700" stroke-width="3"/>
-                    <circle cx="65" cy="70" r="10" fill="#111" stroke="#FFD700" stroke-width="3"/>
                 </svg>
+                <h2 style="color: #FFD700; margin-top: 15px;">📝 CRIAR CONTA</h2>
             </div>
-            <div class="register-title">📝 CRIAR CONTA</div>
-            <div class="register-subtitle">Preencha os dados abaixo</div>
+
+            <!-- MENSAGEM IMPORTANTE: SÓ APÓS PAGAMENTO -->
+            <div class="payment-warning">
+                <p>💰 APENAS APÓS CONFIRMAÇÃO DE PAGAMENTO</p>
+                <p style="font-size: 0.9rem;">Seu acesso será liberado após a aprovação manual</p>
+                <small>Tempo estimado: até 30 minutos</small>
+            </div>
 
             <div class="form-group">
                 <label>USUÁRIO</label>
-                <input type="text" id="regUser" placeholder="Escolha um nome de usuário">
+                <input type="text" id="regUser" placeholder="Escolha um usuário">
             </div>
 
             <div class="form-group">
@@ -1090,178 +909,125 @@
                 <input type="password" id="regPass" placeholder="Crie uma senha">
             </div>
 
-            <div class="form-group">
-                <label>CONFIRMAR SENHA</label>
-                <input type="password" id="regConfirmPass" placeholder="Digite a senha novamente">
-            </div>
-
             <div class="error-message" id="registerError"></div>
             <div class="success-message" id="registerSuccess">✅ Cadastro realizado! Aguarde aprovação.</div>
 
-            <button class="btn-register" onclick="finalizarCadastro()">CRIAR CONTA</button>
-            <button class="btn-back" style="margin-top: 20px;" onclick="voltarLogin()">VOLTAR</button>
+            <button class="btn-action" onclick="finalizarCadastro()">CRIAR CONTA</button>
+            <button class="btn-back" onclick="voltarLogin()">VOLTAR</button>
         </div>
 
-        <!-- TELA 4: APROVAÇÃO PENDENTE -->
-        <div id="pendingScreen" class="pending-screen" style="display: none;">
-            <div class="pending-icon">
-                <svg viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="40" fill="#111" stroke="#FFD700" stroke-width="3"/>
-                    <path d="M50 30 L50 50 L65 65" stroke="#FFD700" stroke-width="3" fill="none"/>
-                    <circle cx="50" cy="30" r="3" fill="#FFD700"/>
-                </svg>
-            </div>
-            <div class="pending-title">⏳ AGUARDANDO APROVAÇÃO</div>
-            
-            <div class="pending-message">
-                <p>Seu cadastro foi realizado com sucesso!</p>
-                <p class="pending-highlight">Status: PENDENTE</p>
-                <p>Assim que o pagamento for confirmado, seu acesso será liberado.</p>
-                <p>Tempo estimado: <strong>até 30 minutos</strong></p>
-            </div>
-
-            <div class="contact-info">
-                <p style="color: #ddd; margin-bottom: 10px;">Dúvidas? Entre em contato:</p>
-                <p class="telegram">📱 Telegram: @suporte_2tap</p>
-            </div>
-
-            <button class="btn-back" style="margin-top: 20px;" onclick="voltarInicio()">VOLTAR AO INÍCIO</button>
-        </div>
-
-        <!-- TELA 5: DADOS BANCÁRIOS (APÓS APROVAÇÃO) -->
-        <div id="bankScreen" class="bank-screen">
-            <div class="bank-icon">
-                <svg viewBox="0 0 100 100">
-                    <rect x="20" y="40" width="60" height="40" fill="#111" stroke="#FFD700" stroke-width="3" rx="5"/>
-                    <rect x="35" y="20" width="30" height="25" fill="#111" stroke="#FFD700" stroke-width="3" rx="3"/>
-                </svg>
-            </div>
-            <div class="bank-title">🏦 DADOS BANCÁRIOS</div>
-
-            <div class="form-group">
-                <label>AGÊNCIA (sem dígito)</label>
-                <input type="text" id="bankAgencia" placeholder="Ex: 1234">
-            </div>
-
-            <div class="form-group">
-                <label>CONTA (sem dígito)</label>
-                <input type="text" id="bankConta" placeholder="Ex: 56789">
-            </div>
-
-            <div class="form-group">
-                <label>DÍGITO DA CONTA</label>
-                <input type="text" id="bankDigito" placeholder="1" maxlength="1">
-            </div>
-
-            <button class="btn-next" onclick="salvarDadosBancarios()">CONTINUAR</button>
-        </div>
-
-        <!-- TELA 6: GERADOR PIX (ACESSO LIBERADO) -->
-        <div id="pixGeneratorScreen" class="pix-generator-screen">
-            <div class="user-info-header">
-                <div class="user-bank-info">
-                    <span>AGÊNCIA:</span> <span id="displayAgencia">1234</span>
+        <!-- TELA 4: PAINEL PRINCIPAL (SÓ APÓS APROVAÇÃO) -->
+        <div id="mainPanel" class="main-panel">
+            <div class="panel-header">
+                <div class="user-info-area">
+                    <div class="user-greeting">
+                        👤 <span id="userNameDisplay">Usuário</span>
+                    </div>
+                    <div class="user-bank-details">
+                        <span class="bank-info" id="bankInfoDisplay">Agência: 0001 | Conta: 00001-0</span>
+                        <button class="btn-edit-bank" onclick="abrirModalEdicao()">
+                            ✏️ EDITAR DADOS
+                        </button>
+                    </div>
                 </div>
-                <div class="user-bank-info">
-                    <span>CONTA:</span> <span id="displayConta">56789-1</span>
-                    <span id="vipBadge" class="vip-user-badge" style="display: none;">👑 VITALÍCIO</span>
+                <div class="user-status">✅ ACESSO LIBERADO</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-title">PIX GERADOS</div>
+                    <div class="stat-value" id="pixCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">BANCOS</div>
+                    <div class="stat-value">100+</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">STATUS</div>
+                    <div class="stat-value">✅ ATIVO</div>
                 </div>
             </div>
 
-            <div class="generator-title">⚡ GERAR PIX • 2 CLIQUES</div>
+            <div class="generator-title">⚡ GERADOR DE PIX</div>
 
-            <div class="generator-grid">
-                <div class="input-field">
-                    <label>CHAVE PIX DO RECEBEDOR</label>
-                    <input type="text" id="pixChave" placeholder="CPF, E-mail, Telefone..." value="contato@2tap.com">
-                </div>
+            <div class="input-field">
+                <label>CHAVE PIX DO RECEBEDOR</label>
+                <input type="text" id="pixChave" placeholder="CPF, E-mail, Telefone..." value="contato@2tap.com">
+            </div>
 
-                <div class="input-field">
-                    <label>💰 VALOR (R$)</label>
-                    <input type="number" id="pixValor" step="0.01" placeholder="0,00">
-                </div>
+            <div class="input-field">
+                <label>💰 VALOR (R$)</label>
+                <input type="number" id="pixValor" step="0.01" placeholder="0,00">
+            </div>
 
-                <div class="input-field">
-                    <label>DESCRIÇÃO (opcional)</label>
-                    <input type="text" id="pixDescricao" placeholder="Pagamento">
-                </div>
+            <div class="input-field">
+                <label>DESCRIÇÃO (opcional)</label>
+                <input type="text" id="pixDescricao" placeholder="Ex: Pagamento">
             </div>
 
             <button class="btn-generate" onclick="gerarPix()">⚡ GERAR PIX • ENTER ⚡</button>
 
-            <div id="pixResultArea" class="result-area">
-                <div class="qr-result">
+            <div class="key-hint">
+                <kbd>↵ ENTER</kbd> para gerar • depois <kbd>📤 COMPARTILHAR</kbd>
+            </div>
+
+            <div id="pixResult" class="result-area">
+                <div class="qr-code-box">
                     <img id="pixQrCode" src="" alt="QR Code Pix">
                 </div>
 
-                <div class="pix-code-result" id="pixCodigo">
-                    Clique em GERAR PIX para criar o código
+                <div class="pix-code-result" id="pixCodigoFinal">
+                    Clique em GERAR PIX
                 </div>
 
-                <div style="margin: 20px 0;">
-                    <button class="btn-copy" onclick="copiarPixGerado()">📋 COPIAR CÓDIGO</button>
-                </div>
-
-                <div style="margin-top: 30px;">
-                    <div style="color: #FFD700; margin-bottom: 15px;">📱 ENVIAR PARA:</div>
-                    <div class="contact-selector">
-                        <div class="contact-card" onclick="abrirWhatsAppContato('joao')" id="contactJoao">
-                            <div class="contact-name">João Silva</div>
-                            <div class="contact-number">(11) 99999-9999</div>
-                        </div>
-                        <div class="contact-card" onclick="abrirWhatsAppContato('maria')" id="contactMaria">
-                            <div class="contact-name">Maria Santos</div>
-                            <div class="contact-number">(11) 88888-8888</div>
-                        </div>
-                        <div class="contact-card" onclick="abrirWhatsAppContato('pedro')" id="contactPedro">
-                            <div class="contact-name">Pedro Souza</div>
-                            <div class="contact-number">(11) 77777-7777</div>
-                        </div>
-                        <div class="contact-card" onclick="abrirWhatsAppGrupo()" id="contactGrupo">
-                            <div class="contact-name">Grupo Vendas</div>
-                            <div class="contact-number">Grupo WhatsApp</div>
-                        </div>
-                    </div>
-
-                    <button class="btn-send-whatsapp" onclick="abrirWhatsAppContatoPersonalizado()">
-                        📲 ESCOLHER CONTATO DO CELULAR
-                    </button>
+                <div class="action-buttons">
+                    <button class="btn-share copy" onclick="copiarPixGerado()">📋 COPIAR</button>
+                    <button class="btn-share whatsapp" onclick="compartilharPix()">📤 COMPARTILHAR</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SUPORTE FLUTUANTE -->
-    <div class="floating-support">
-        <div class="support-button" onclick="toggleSupport()">
-            💬
-        </div>
-        <div class="support-modal" id="supportModal">
-            <h3>💬 SUPORTE 2TAP</h3>
-            <p style="color: #888; margin-bottom: 15px;">Atendimento via Telegram</p>
-            
-            <div class="telegram-contact">
-                <div style="font-size: 40px; margin-bottom: 10px;">📱</div>
-                <div class="telegram-user">@suporte_2tap</div>
-                <div style="color: #888; font-size: 0.8rem; margin: 10px 0;">Tempo médio: 5min</div>
+    <!-- MODAL DE EDIÇÃO DE DADOS BANCÁRIOS -->
+    <div id="bankModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✏️ EDITAR DADOS BANCÁRIOS</h2>
+                <button class="modal-close" onclick="fecharModalEdicao()">&times;</button>
             </div>
             
-            <button class="btn-telegram" onclick="abrirTelegram()">
-                ABRIR TELEGRAM
-            </button>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>AGÊNCIA (apenas números, sem dígito)</label>
+                    <input type="text" id="editAgencia" placeholder="Ex: 1234" maxlength="4">
+                </div>
+
+                <div class="form-group">
+                    <label>CONTA (apenas números, sem dígito)</label>
+                    <input type="text" id="editConta" placeholder="Ex: 56789" maxlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label>DÍGITO DA CONTA</label>
+                    <input type="text" id="editDigito" placeholder="1" maxlength="1">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal cancel" onclick="fecharModalEdicao()">CANCELAR</button>
+                <button class="btn-modal save" onclick="salvarDadosBancarios()">SALVAR</button>
+            </div>
         </div>
     </div>
 
-    <div class="toast-message" id="toast">✅ Operação realizada!</div>
+    <div class="toast" id="toast">✅ Operação realizada!</div>
 
     <script>
         // ==================== GERADOR DE PIX PROFISSIONAL ====================
         function calcularCRC16(payload) {
             let crc = 0xFFFF;
-            
             for (let i = 0; i < payload.length; i++) {
                 crc ^= (payload.charCodeAt(i) << 8);
-                
                 for (let j = 0; j < 8; j++) {
                     if (crc & 0x8000) {
                         crc = (crc << 1) ^ 0x1021;
@@ -1270,235 +1036,155 @@
                     }
                 }
             }
-            
             return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
         }
 
-        function formatEMVField(id, valor) {
-            const tamanho = valor.length.toString().padStart(2, '0');
-            return id + tamanho + valor;
-        }
-
-        function gerarPixValido(chave, valor, descricao = '', nomeRecebedor = '2TAP GOLD') {
+        function gerarPixValido(chave, valor, descricao = '') {
             try {
-                if (!chave || chave.trim() === '') {
-                    throw new Error('Chave Pix é obrigatória');
-                }
-                
                 chave = chave.trim();
+                const valorFormatado = parseFloat(valor).toFixed(2).replace('.', '');
                 
-                let payload = '';
+                let payload = '000201';
                 
-                payload += '000201';
+                // Merchant Account Information
+                const pixInfo = '0014BR.GOV.BCB.PIX' + 
+                    '01' + chave.length.toString().padStart(2, '0') + chave;
+                payload += '26' + pixInfo.length.toString().padStart(2, '0') + pixInfo;
                 
-                const pixAccountInfo = '0014BR.GOV.BCB.PIX' + formatEMVField('01', chave);
-                payload += formatEMVField('26', pixAccountInfo);
-                
+                // Merchant Category Code
                 payload += '52040000';
+                
+                // Moeda
                 payload += '5303986';
                 
-                if (valor && valor > 0) {
-                    const valorFormatado = parseFloat(valor).toFixed(2).replace('.', '');
-                    payload += formatEMVField('54', valorFormatado);
-                }
+                // Valor
+                payload += '54' + valorFormatado.length.toString().padStart(2, '0') + valorFormatado;
                 
+                // País
                 payload += '5802BR';
                 
-                const nomeLimpo = nomeRecebedor.substring(0, 25).toUpperCase();
-                payload += formatEMVField('59', nomeLimpo);
+                // Nome do recebedor
+                const nome = '2TAP BANK';
+                payload += '59' + nome.length.toString().padStart(2, '0') + nome;
                 
-                payload += formatEMVField('60', 'SAO PAULO');
+                // Cidade
+                const cidade = 'SAO PAULO';
+                payload += '60' + cidade.length.toString().padStart(2, '0') + cidade;
                 
-                const txid = descricao ? descricao.substring(0, 25) : '***';
-                payload += formatEMVField('62', '05' + formatEMVField('05', txid));
+                // TXID
+                const txid = descricao ? descricao.substring(0, 20) : '***';
+                const txidField = '05' + txid.length.toString().padStart(2, '0') + txid;
+                payload += '62' + txidField.length.toString().padStart(2, '0') + txidField;
                 
+                // CRC
                 payload += '6304';
                 
                 const crc = calcularCRC16(payload);
-                const codigoFinal = payload + crc;
-                
-                return {
-                    sucesso: true,
-                    codigo: codigoFinal,
-                    crc: crc,
-                    info: {
-                        recebedor: nomeLimpo,
-                        valor: valor || 0,
-                        chave: chave
-                    }
-                };
-                
+                return payload + crc;
             } catch (error) {
-                console.error('❌ Erro ao gerar Pix:', error.message);
-                return {
-                    sucesso: false,
-                    erro: error.message
-                };
+                console.error('Erro:', error);
+                return null;
             }
-        }
-
-        // ==================== FUNÇÕES DE WHATSAPP ====================
-        function abrirWhatsApp(numero, mensagem) {
-            if (!numero) {
-                mostrarToast('❌ Número não disponível');
-                return;
-            }
-            
-            const texto = encodeURIComponent(mensagem);
-            const url = `https://wa.me/${numero}?text=${texto}`;
-            window.open(url, '_blank');
-        }
-
-        function abrirWhatsAppContato(contato) {
-            const valor = document.getElementById('pixValor').value;
-            const chave = document.getElementById('pixChave').value;
-            const codigo = document.getElementById('pixCodigo').innerText;
-            
-            if (codigo.includes('Clique em')) {
-                mostrarToast('❌ Gere um Pix primeiro!');
-                return;
-            }
-            
-            const contatos = {
-                joao: { numero: '5511999999999' },
-                maria: { numero: '5511888888888' },
-                pedro: { numero: '5511777777777' }
-            };
-            
-            const mensagem = `🏦 *PAGAMENTO 2TAP*\n\n💰 *Valor:* R$ ${valor}\n📱 *Chave:* ${chave}\n\n📋 *Código Pix:*\n\`${codigo}\`\n\n✅ PIX gerado via 2TAP`;
-            
-            abrirWhatsApp(contatos[contato].numero, mensagem);
-        }
-
-        function abrirWhatsAppGrupo() {
-            const valor = document.getElementById('pixValor').value;
-            const chave = document.getElementById('pixChave').value;
-            const codigo = document.getElementById('pixCodigo').innerText;
-            
-            if (codigo.includes('Clique em')) {
-                mostrarToast('❌ Gere um Pix primeiro!');
-                return;
-            }
-            
-            const mensagem = `🏦 *PAGAMENTO 2TAP*\n\n💰 *Valor:* R$ ${valor}\n📱 *Chave:* ${chave}\n\n📋 *Código Pix:*\n\`${codigo}\`\n\n✅ PIX gerado via 2TAP`;
-            
-            navigator.clipboard.writeText(mensagem);
-            mostrarToast('📋 Mensagem copiada! Agora cole no grupo desejado');
-        }
-
-        function abrirWhatsAppContatoPersonalizado() {
-            const valor = document.getElementById('pixValor').value;
-            const chave = document.getElementById('pixChave').value;
-            const codigo = document.getElementById('pixCodigo').innerText;
-            
-            if (codigo.includes('Clique em')) {
-                mostrarToast('❌ Gere um Pix primeiro!');
-                return;
-            }
-            
-            const mensagem = `🏦 *PAGAMENTO 2TAP*\n\n💰 *Valor:* R$ ${valor}\n📱 *Chave:* ${chave}\n\n📋 *Código Pix:*\n\`${codigo}\`\n\n✅ PIX gerado via 2TAP`;
-            
-            // Detecta se é celular ou computador
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // No celular, tenta abrir o seletor de contatos
-                window.location.href = `whatsapp://send?text=${encodeURIComponent(mensagem)}`;
-                
-                // Fallback se não abrir
-                setTimeout(() => {
-                    window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`, '_blank');
-                }, 500);
-            } else {
-                // No computador, abre WhatsApp Web
-                window.open(`https://web.whatsapp.com/send?text=${encodeURIComponent(mensagem)}`, '_blank');
-            }
-        }
-
-        // ==================== DADOS DO DONO ====================
-        const DONO = {
-            usuario: 'rhyanxzk9',
-            senha: 'Denner9',
-            plano: 'VITALÍCIO'
-        };
-
-        if (!localStorage.getItem('usuario_' + DONO.usuario)) {
-            const donoDados = {
-                usuario: DONO.usuario,
-                email: 'dono@2tap.com',
-                senha: DONO.senha,
-                plano: DONO.plano,
-                status: 'aprovado',
-                dataCadastro: new Date().toLocaleString()
-            };
-            localStorage.setItem('usuario_' + DONO.usuario, JSON.stringify(donoDados));
-            localStorage.setItem('agencia', '0001');
-            localStorage.setItem('conta', '00001-0');
         }
 
         // ==================== VARIÁVEIS GLOBAIS ====================
+        const DONO = { usuario: 'rhyanxzk9', senha: 'Denner9' };
         let planoSelecionado = null;
         let valorSelecionado = 0;
-        let nomePlanoSelecionado = '';
+        let contadorPix = 0;
         let usuarioLogado = null;
 
-        // ==================== FUNÇÕES DA TELA 1: PLANOS ====================
-        function selecionarPlano(plano, valor, nome) {
-            planoSelecionado = plano;
-            valorSelecionado = valor;
-            nomePlanoSelecionado = nome;
+        // ==================== FUNÇÕES DE DADOS BANCÁRIOS ====================
+        function abrirModalEdicao() {
+            // Carregar dados atuais
+            const agencia = localStorage.getItem('agencia_' + usuarioLogado) || '0001';
+            const conta = localStorage.getItem('conta_' + usuarioLogado) || '00001-0';
             
-            document.querySelectorAll('.plan-card').forEach(card => {
-                card.classList.remove('selected');
-            });
+            const [contaNum, digito] = conta.split('-');
             
-            document.querySelector(`[data-plan="${plano}"]`).classList.add('selected');
+            document.getElementById('editAgencia').value = agencia;
+            document.getElementById('editConta').value = contaNum;
+            document.getElementById('editDigito').value = digito || '0';
             
-            document.getElementById('selectedPlanName').innerText = nome;
-            document.getElementById('selectedPlanPrice').innerText = `R$ ${valor}`;
-            document.getElementById('pixValue').innerText = `R$ ${valor},00`;
-            
-            const codigoPix = gerarPixValido('contato@2tap.com', valor).codigo || 'Código gerado';
-            document.getElementById('pixCode').innerText = codigoPix;
-            
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(codigoPix)}`;
-            document.getElementById('qrCodeImg').src = qrUrl;
-            
-            document.getElementById('paymentArea').classList.add('active');
-            document.getElementById('paymentArea').scrollIntoView({ behavior: 'smooth' });
-            
-            mostrarToast(`✅ Plano ${nome} selecionado!`);
+            document.getElementById('bankModal').classList.add('active');
         }
 
-        function copiarCodigoPix() {
-            const codigo = document.getElementById('pixCode').innerText;
-            if (codigo.includes('Selecione')) {
-                mostrarToast('❌ Selecione um plano primeiro!');
+        function fecharModalEdicao() {
+            document.getElementById('bankModal').classList.remove('active');
+        }
+
+        function salvarDadosBancarios() {
+            const agencia = document.getElementById('editAgencia').value;
+            const conta = document.getElementById('editConta').value;
+            const digito = document.getElementById('editDigito').value;
+            
+            if (!agencia || !conta || !digito) {
+                mostrarToast('❌ Preencha todos os campos!');
                 return;
             }
+            
+            // Validar formato
+            if (!/^\d{4}$/.test(agencia)) {
+                mostrarToast('❌ Agência deve ter 4 números');
+                return;
+            }
+            
+            if (!/^\d{5,6}$/.test(conta)) {
+                mostrarToast('❌ Conta deve ter 5 ou 6 números');
+                return;
+            }
+            
+            if (!/^\d{1}$/.test(digito)) {
+                mostrarToast('❌ Dígito deve ser 1 número');
+                return;
+            }
+            
+            // Salvar dados
+            localStorage.setItem('agencia_' + usuarioLogado, agencia);
+            localStorage.setItem('conta_' + usuarioLogado, `${conta}-${digito}`);
+            
+            // Atualizar display
+            document.getElementById('bankInfoDisplay').innerHTML = 
+                `Agência: ${agencia} | Conta: ${conta}-${digito}`;
+            
+            fecharModalEdicao();
+            mostrarToast('✅ Dados bancários atualizados!');
+        }
+
+        // ==================== TELA 1: PLANOS ====================
+        function selecionarPlano(plano, valor) {
+            planoSelecionado = plano;
+            valorSelecionado = valor;
+            
+            document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+            document.querySelector(`[data-plan="${plano}"]`).classList.add('selected');
+            
+            document.getElementById('pixValorDisplay').innerText = `R$ ${valor},00`;
+            
+            // Gerar código PIX válido
+            const codigo = gerarPixValido('contato@2tapbank.com', valor, 'Plano ' + plano);
+            document.getElementById('pixCodePagamento').innerText = codigo || 'Erro ao gerar código';
+            
+            // Gerar QR Code
+            if (codigo) {
+                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(codigo)}`;
+                document.getElementById('qrCodePagamento').src = qrUrl;
+            }
+            
+            document.getElementById('paymentArea').classList.add('active');
+        }
+
+        function copiarCodigoPagamento() {
+            const codigo = document.getElementById('pixCodePagamento').innerText;
             navigator.clipboard.writeText(codigo);
             mostrarToast('✅ Código PIX copiado!');
         }
 
         function voltarPlanos() {
             document.getElementById('paymentArea').classList.remove('active');
-            document.querySelectorAll('.plan-card').forEach(card => {
-                card.classList.remove('selected');
-            });
         }
 
         function confirmarPagamento() {
-            if (!planoSelecionado) {
-                mostrarToast('❌ Selecione um plano primeiro!');
-                return;
-            }
-            
-            document.getElementById('plansScreen').style.display = 'none';
-            document.getElementById('loginScreen').classList.add('active');
-            mostrarToast('✅ Pagamento confirmado! Faça login ou cadastre-se.');
-        }
-
-        function mostrarTelaLogin() {
             document.getElementById('plansScreen').style.display = 'none';
             document.getElementById('loginScreen').classList.add('active');
         }
@@ -1506,55 +1192,51 @@
         function voltarInicio() {
             document.getElementById('loginScreen').classList.remove('active');
             document.getElementById('registerScreen').classList.remove('active');
-            document.getElementById('pendingScreen').style.display = 'none';
-            document.getElementById('bankScreen').classList.remove('active');
-            document.getElementById('pixGeneratorScreen').classList.remove('active');
             document.getElementById('plansScreen').style.display = 'block';
         }
 
-        // ==================== FUNÇÕES DA TELA 2: LOGIN ====================
+        // ==================== TELA 2: LOGIN ====================
         function fazerLogin() {
             const user = document.getElementById('loginUser').value;
             const pass = document.getElementById('loginPass').value;
             
-            if (!user || !pass) {
-                mostrarToast('❌ Preencha usuário e senha!');
-                return;
-            }
-            
+            // DONO tem acesso direto
             if (user === DONO.usuario && pass === DONO.senha) {
-                usuarioLogado = DONO.usuario;
+                usuarioLogado = user;
                 document.getElementById('loginScreen').classList.remove('active');
-                document.getElementById('pixGeneratorScreen').classList.add('active');
+                document.getElementById('mainPanel').classList.add('active');
+                document.getElementById('userNameDisplay').innerText = user;
                 
-                document.getElementById('displayAgencia').innerText = localStorage.getItem('agencia') || '0001';
-                document.getElementById('displayConta').innerText = localStorage.getItem('conta') || '00001-0';
+                // Carregar dados bancários do dono
+                const agencia = localStorage.getItem('agenda_' + user) || '0001';
+                const conta = localStorage.getItem('conta_' + user) || '00001-0';
+                document.getElementById('bankInfoDisplay').innerHTML = 
+                    `Agência: ${agencia} | Conta: ${conta}`;
                 
-                document.getElementById('vipBadge').style.display = 'inline-block';
-                
-                mostrarToast('👑 Bem-vindo DONO! Acesso vitalício.');
+                mostrarToast('👑 Bem-vindo DONO!');
                 return;
             }
             
+            // Usuários comuns verificam se foram aprovados
             const usuarioSalvo = localStorage.getItem('usuario_' + user);
-            
             if (usuarioSalvo) {
                 const dados = JSON.parse(usuarioSalvo);
                 if (dados.senha === pass) {
                     if (dados.status === 'aprovado') {
                         usuarioLogado = user;
                         document.getElementById('loginScreen').classList.remove('active');
-                        document.getElementById('pixGeneratorScreen').classList.add('active');
+                        document.getElementById('mainPanel').classList.add('active');
+                        document.getElementById('userNameDisplay').innerText = user;
                         
-                        document.getElementById('displayAgencia').innerText = dados.agencia || '1234';
-                        document.getElementById('displayConta').innerText = dados.conta || '56789-1';
+                        // Carregar dados bancários do usuário
+                        const agencia = localStorage.getItem('agencia_' + user) || '1234';
+                        const conta = localStorage.getItem('conta_' + user) || '56789-0';
+                        document.getElementById('bankInfoDisplay').innerHTML = 
+                            `Agência: ${agencia} | Conta: ${conta}`;
                         
-                        document.getElementById('vipBadge').style.display = 'none';
-                        
-                        mostrarToast('✅ Login realizado com sucesso!');
+                        mostrarToast('✅ Login realizado!');
                     } else {
-                        document.getElementById('loginScreen').classList.remove('active');
-                        document.getElementById('pendingScreen').style.display = 'block';
+                        mostrarToast('⏳ Aguardando aprovação do pagamento...');
                     }
                 } else {
                     mostrarToast('❌ Senha incorreta!');
@@ -1574,110 +1256,123 @@
             document.getElementById('loginScreen').classList.add('active');
         }
 
-        // ==================== FUNÇÕES DA TELA 3: CADASTRO ====================
+        function mostrarLogin() {
+            document.getElementById('plansScreen').style.display = 'none';
+            document.getElementById('loginScreen').classList.add('active');
+        }
+
+        // ==================== TELA 3: CADASTRO ====================
         function finalizarCadastro() {
             const user = document.getElementById('regUser').value;
             const email = document.getElementById('regEmail').value;
             const senha = document.getElementById('regPass').value;
-            const confirmSenha = document.getElementById('regConfirmPass').value;
             
             const errorDiv = document.getElementById('registerError');
-            const successDiv = document.getElementById('registerSuccess');
             
-            errorDiv.style.display = 'none';
-            successDiv.style.display = 'none';
-            
-            if (user === DONO.usuario) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ Este usuário não está disponível!';
-                return;
-            }
-            
-            if (!user || !email || !senha || !confirmSenha) {
+            if (!user || !email || !senha) {
                 errorDiv.style.display = 'block';
                 errorDiv.innerText = '❌ Preencha todos os campos!';
                 return;
             }
             
-            if (senha !== confirmSenha) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ As senhas não coincidem!';
-                return;
-            }
-            
-            if (senha.length < 4) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ A senha deve ter pelo menos 4 caracteres!';
-                return;
-            }
-            
-            if (!email.includes('@') || !email.includes('.')) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ Email inválido!';
-                return;
-            }
-            
             if (localStorage.getItem('usuario_' + user)) {
                 errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ Usuário já existe! Escolha outro.';
+                errorDiv.innerText = '❌ Usuário já existe!';
                 return;
             }
             
+            // Salvar com status PENDENTE (aguardando aprovação)
             const usuarioDados = {
                 usuario: user,
                 email: email,
                 senha: senha,
-                plano: nomePlanoSelecionado || 'Pendente',
                 status: 'pendente',
-                dataCadastro: new Date().toLocaleString()
+                data: new Date().toLocaleString()
             };
             
             localStorage.setItem('usuario_' + user, JSON.stringify(usuarioDados));
-            localStorage.setItem('ultimoUsuario', user);
             
-            successDiv.style.display = 'block';
+            // Salvar dados bancários padrão
+            localStorage.setItem('agencia_' + user, '1234');
+            localStorage.setItem('conta_' + user, '56789-0');
+            
+            errorDiv.style.display = 'none';
+            document.getElementById('registerSuccess').style.display = 'block';
             
             setTimeout(() => {
                 document.getElementById('registerScreen').classList.remove('active');
-                document.getElementById('pendingScreen').style.display = 'block';
+                document.getElementById('loginScreen').classList.add('active');
             }, 2000);
+            
+            // Notificação no console para o dono
+            console.log('🔔 NOVO CADASTRO PENDENTE:', user);
         }
 
-        // ==================== FUNÇÕES DA TELA 5: DADOS BANCÁRIOS ====================
-        function salvarDadosBancarios() {
-            const agencia = document.getElementById('bankAgencia').value;
-            const conta = document.getElementById('bankConta').value;
-            const digito = document.getElementById('bankDigito').value;
+        // ==================== TELA 4: GERADOR PIX ====================
+        function gerarPix() {
+            const chave = document.getElementById('pixChave').value;
+            const valor = document.getElementById('pixValor').value;
+            const descricao = document.getElementById('pixDescricao').value;
             
-            if (!agencia || !conta || !digito) {
-                mostrarToast('❌ Preencha todos os dados bancários!');
+            if (!chave || !valor) {
+                mostrarToast('❌ Preencha todos os campos!');
                 return;
             }
             
-            if (usuarioLogado) {
-                const userData = JSON.parse(localStorage.getItem('usuario_' + usuarioLogado));
-                userData.agencia = agencia;
-                userData.conta = `${conta}-${digito}`;
-                localStorage.setItem('usuario_' + usuarioLogado, JSON.stringify(userData));
+            const codigo = gerarPixValido(chave, valor, descricao);
+            
+            if (!codigo) {
+                mostrarToast('❌ Erro ao gerar Pix!');
+                return;
             }
             
-            document.getElementById('bankScreen').classList.remove('active');
-            document.getElementById('pixGeneratorScreen').classList.add('active');
+            document.getElementById('pixCodigoFinal').innerText = codigo;
             
-            document.getElementById('displayAgencia').innerText = agencia;
-            document.getElementById('displayConta').innerText = `${conta}-${digito}`;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(codigo)}`;
+            document.getElementById('pixQrCode').src = qrUrl;
             
-            mostrarToast('✅ Dados salvos com sucesso!');
+            document.getElementById('pixResult').classList.add('active');
+            contadorPix++;
+            document.getElementById('pixCount').innerText = contadorPix;
+            
+            mostrarToast('✅ Pix gerado com sucesso!');
         }
 
-        // ==================== FUNÇÕES DE APROVAÇÃO ====================
+        function copiarPixGerado() {
+            const codigo = document.getElementById('pixCodigoFinal').innerText;
+            navigator.clipboard.writeText(codigo);
+            mostrarToast('✅ Código copiado!');
+        }
+
+        function compartilharPix() {
+            const codigo = document.getElementById('pixCodigoFinal').innerText;
+            const valor = document.getElementById('pixValor').value;
+            const chave = document.getElementById('pixChave').value;
+            
+            const mensagem = `🏦 *PAGAMENTO 2TAP*\n\n💰 R$ ${valor}\n📱 ${chave}\n\n📋 ${codigo}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'PIX 2TAP',
+                    text: mensagem
+                }).catch(() => {
+                    navigator.clipboard.writeText(mensagem);
+                    mostrarToast('📋 Mensagem copiada!');
+                });
+            } else {
+                navigator.clipboard.writeText(mensagem);
+                mostrarToast('📋 Mensagem copiada!');
+            }
+        }
+
+        // ==================== FUNÇÕES DE APROVAÇÃO (PARA O DONO) ====================
         function aprovarUsuario(usuario) {
             const userData = JSON.parse(localStorage.getItem('usuario_' + usuario));
             if (userData) {
                 userData.status = 'aprovado';
                 localStorage.setItem('usuario_' + usuario, JSON.stringify(userData));
                 console.log('✅ Usuário aprovado:', usuario);
-                mostrarToast(`✅ Usuário ${usuario} aprovado!`);
+                mostrarToast(`✅ ${usuario} aprovado!`);
             }
         }
 
@@ -1686,65 +1381,15 @@
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 if (key.startsWith('usuario_')) {
-                    const userData = JSON.parse(localStorage.getItem(key));
-                    if (userData.status === 'pendente') {
-                        console.log(`- ${userData.usuario} (${userData.email}) - ${userData.dataCadastro}`);
+                    const user = JSON.parse(localStorage.getItem(key));
+                    if (user.status === 'pendente') {
+                        console.log(`- ${user.usuario} (${user.email})`);
                     }
                 }
             }
         }
 
-        // ==================== FUNÇÕES DA TELA 6: GERADOR PIX ====================
-        function gerarPix() {
-            const chave = document.getElementById('pixChave').value;
-            const valor = document.getElementById('pixValor').value;
-            const descricao = document.getElementById('pixDescricao').value;
-            
-            if (!chave) {
-                mostrarToast('❌ Digite a chave Pix do recebedor!');
-                return;
-            }
-            
-            if (!valor || valor <= 0) {
-                mostrarToast('❌ Digite um valor válido!');
-                return;
-            }
-            
-            const resultado = gerarPixValido(chave, valor, descricao, '2TAP GOLD');
-            
-            if (!resultado.sucesso) {
-                mostrarToast('❌ Erro: ' + resultado.erro);
-                return;
-            }
-            
-            document.getElementById('pixCodigo').innerText = resultado.codigo;
-            
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(resultado.codigo)}`;
-            document.getElementById('pixQrCode').src = qrUrl;
-            
-            document.getElementById('pixResultArea').classList.add('active');
-            mostrarToast('✅ Pix válido gerado!');
-        }
-
-        function copiarPixGerado() {
-            const codigo = document.getElementById('pixCodigo').innerText;
-            if (codigo.includes('Clique em')) {
-                mostrarToast('❌ Gere um Pix primeiro!');
-                return;
-            }
-            navigator.clipboard.writeText(codigo);
-            mostrarToast('✅ Código Pix copiado!');
-        }
-
-        // ==================== FUNÇÕES UTILITÁRIAS ====================
-        function toggleSupport() {
-            document.getElementById('supportModal').classList.toggle('active');
-        }
-
-        function abrirTelegram() {
-            window.open('https://t.me/suporte_2tap', '_blank');
-        }
-
+        // ==================== UTILITÁRIOS ====================
         function mostrarToast(msg) {
             const toast = document.getElementById('toast');
             toast.style.display = 'block';
@@ -1754,32 +1399,28 @@
             }, 3000);
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' && document.getElementById('pixGeneratorScreen').classList.contains('active')) {
-                event.preventDefault();
-                gerarPix();
+        // Atalho Enter
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                if (document.getElementById('mainPanel').classList.contains('active')) {
+                    e.preventDefault();
+                    gerarPix();
+                }
             }
         });
 
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('supportModal');
-            const button = document.querySelector('.support-button');
-            
-            if (button && !button.contains(event.target) && modal && !modal.contains(event.target)) {
-                modal.classList.remove('active');
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharModalEdicao();
             }
         });
 
+        // Instruções no console
         window.onload = function() {
-            const ultimoUsuario = localStorage.getItem('ultimoUsuario');
-            if (ultimoUsuario && ultimoUsuario !== DONO.usuario) {
-                document.getElementById('loginUser').value = ultimoUsuario;
-            }
-            
-            document.getElementById('loginUser').placeholder = "rhyanxzk9 (dono)";
-            
-            console.log('🔍 Para ver usuários pendentes, digite: listarPendentes()');
-            console.log('🔍 Para aprovar um usuário, digite: aprovarUsuario("usuario")');
+            console.log('🔍 Para aprovar usuários:');
+            console.log('1️⃣ listarPendentes()');
+            console.log('2️⃣ aprovarUsuario("nome")');
         };
     </script>
 </body>
