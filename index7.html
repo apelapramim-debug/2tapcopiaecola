@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2TAP • Sistema Oficial</title>
+    <title>2TAP • Sistema com Aprovação</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
@@ -539,6 +539,28 @@
             font-size: 0.9rem;
         }
 
+        .info-message {
+            background: #1a1a1a;
+            border: 1px solid #FFD700;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .info-message p {
+            color: #FFD700;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .info-message small {
+            color: #888;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 10px;
+        }
+
         .error-message {
             color: #ff4444;
             text-align: center;
@@ -631,6 +653,76 @@
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
         }
 
+        /* ========== TELA DE APROVAÇÃO PENDENTE ========== */
+        .pending-screen {
+            background: #111;
+            border: 1px solid #FFD700;
+            border-radius: 40px;
+            padding: 50px;
+            max-width: 450px;
+            margin: 0 auto;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+
+        .pending-screen.active {
+            display: block;
+        }
+
+        .pending-icon {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pending-icon svg {
+            width: 80px;
+            height: 80px;
+            fill: #FFD700;
+        }
+
+        .pending-title {
+            color: #FFD700;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .pending-message {
+            background: #1a1a1a;
+            border: 1px solid #FFD700;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .pending-message p {
+            color: #ddd;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .pending-highlight {
+            color: #FFD700;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            background: #222;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-info .telegram {
+            color: #FFD700;
+            font-weight: 700;
+        }
+
         /* ========== TELA DO GERADOR PIX ========== */
         .pix-generator-screen {
             background: #111;
@@ -677,6 +769,23 @@
         .user-bank-info span {
             color: #888;
             font-size: 0.9rem;
+        }
+
+        .user-status-badge {
+            background: #00ff88;
+            color: #0a0a0a;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .user-status-badge.pending {
+            background: #ffaa00;
+        }
+
+        .user-status-badge.approved {
+            background: #00ff88;
         }
 
         .generator-title {
@@ -957,7 +1066,7 @@
             <div class="header-gold">
                 <h1>2TAP • GOLD</h1>
                 <p>Escolha seu plano de acesso</p>
-                <div class="badge-2tap">⚡ APENAS PIX ⚡</div>
+                <div class="badge-2tap">⚡ APROVAÇÃO MANUAL ⚡</div>
             </div>
 
             <div class="plans-grid">
@@ -1089,6 +1198,12 @@
             <div class="register-title">📝 CRIAR CONTA</div>
             <div class="register-subtitle">Preencha os dados abaixo</div>
 
+            <div class="info-message">
+                <p>💰 Após o cadastro, aguarde a aprovação do pagamento</p>
+                <p class="pending-highlight">⏳ Status: PENDENTE</p>
+                <small>Você receberá um aviso quando for aprovado</small>
+            </div>
+
             <div class="form-group">
                 <label>USUÁRIO</label>
                 <input type="text" id="regUser" placeholder="Escolha um nome de usuário">
@@ -1110,13 +1225,39 @@
             </div>
 
             <div class="error-message" id="registerError"></div>
-            <div class="success-message" id="registerSuccess">✅ Cadastro realizado com sucesso!</div>
+            <div class="success-message" id="registerSuccess">✅ Cadastro realizado! Aguarde aprovação.</div>
 
             <button class="btn-register" onclick="finalizarCadastro()">CRIAR CONTA</button>
             <button class="btn-back" style="margin-top: 20px;" onclick="voltarLogin()">VOLTAR</button>
         </div>
 
-        <!-- TELA 4: DADOS BANCÁRIOS -->
+        <!-- TELA 4: APROVAÇÃO PENDENTE -->
+        <div id="pendingScreen" class="pending-screen">
+            <div class="pending-icon">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="#111" stroke="#FFD700" stroke-width="3"/>
+                    <path d="M50 30 L50 50 L65 65" stroke="#FFD700" stroke-width="3" fill="none"/>
+                    <circle cx="50" cy="30" r="3" fill="#FFD700"/>
+                </svg>
+            </div>
+            <div class="pending-title">⏳ AGUARDANDO APROVAÇÃO</div>
+            
+            <div class="pending-message">
+                <p>Seu cadastro foi realizado com sucesso!</p>
+                <p class="pending-highlight">Status: PENDENTE</p>
+                <p>Assim que o pagamento for confirmado, seu acesso será liberado.</p>
+                <p>Tempo estimado: <strong>até 30 minutos</strong></p>
+            </div>
+
+            <div class="contact-info">
+                <p style="color: #ddd; margin-bottom: 10px;">Dúvidas? Entre em contato:</p>
+                <p class="telegram">📱 Telegram: @suporte_2tap</p>
+            </div>
+
+            <button class="btn-back" style="margin-top: 20px;" onclick="voltarInicio()">VOLTAR AO INÍCIO</button>
+        </div>
+
+        <!-- TELA 5: DADOS BANCÁRIOS (APÓS APROVAÇÃO) -->
         <div id="bankScreen" class="bank-screen">
             <div class="bank-icon">
                 <svg viewBox="0 0 100 100">
@@ -1144,7 +1285,7 @@
             <button class="btn-next" onclick="salvarDadosBancarios()">CONTINUAR</button>
         </div>
 
-        <!-- TELA 5: GERADOR PIX -->
+        <!-- TELA 6: GERADOR PIX (ACESSO LIBERADO) -->
         <div id="pixGeneratorScreen" class="pix-generator-screen">
             <div class="user-info-header">
                 <div class="user-bank-info">
@@ -1250,13 +1391,14 @@
             plano: 'VITALÍCIO'
         };
 
-        // Criar conta do dono automaticamente
+        // Criar conta do dono automaticamente (já aprovada)
         if (!localStorage.getItem('usuario_' + DONO.usuario)) {
             const donoDados = {
                 usuario: DONO.usuario,
                 email: 'dono@2tap.com',
                 senha: DONO.senha,
                 plano: DONO.plano,
+                status: 'aprovado', // Dono já vem aprovado
                 dataCadastro: new Date().toLocaleString()
             };
             localStorage.setItem('usuario_' + DONO.usuario, JSON.stringify(donoDados));
@@ -1270,6 +1412,7 @@
         let nomePlanoSelecionado = '';
         let contatoSelecionado = null;
         let usuarioLogado = null;
+        let usuarioAguardandoAprovacao = null;
 
         // ==================== FUNÇÕES DA TELA 1: PLANOS ====================
         function selecionarPlano(plano, valor, nome) {
@@ -1340,6 +1483,10 @@
 
         function voltarInicio() {
             document.getElementById('loginScreen').classList.remove('active');
+            document.getElementById('registerScreen').classList.remove('active');
+            document.getElementById('pendingScreen').classList.remove('active');
+            document.getElementById('bankScreen').classList.remove('active');
+            document.getElementById('pixGeneratorScreen').classList.remove('active');
             document.getElementById('plansScreen').style.display = 'block';
         }
 
@@ -1362,7 +1509,6 @@
                 document.getElementById('displayAgencia').innerText = localStorage.getItem('agencia') || '0001';
                 document.getElementById('displayConta').innerText = localStorage.getItem('conta') || '00001-0';
                 
-                // Mostrar badge VIP
                 document.getElementById('vipBadge').style.display = 'inline-block';
                 
                 mostrarToast('👑 Bem-vindo DONO! Acesso vitalício.');
@@ -1375,16 +1521,23 @@
             if (usuarioSalvo) {
                 const dados = JSON.parse(usuarioSalvo);
                 if (dados.senha === pass) {
-                    usuarioLogado = user;
-                    document.getElementById('loginScreen').classList.remove('active');
-                    document.getElementById('pixGeneratorScreen').classList.add('active');
-                    
-                    document.getElementById('displayAgencia').innerText = localStorage.getItem('agencia') || '1234';
-                    document.getElementById('displayConta').innerText = localStorage.getItem('conta') || '56789-1';
-                    
-                    document.getElementById('vipBadge').style.display = 'none';
-                    
-                    mostrarToast('✅ Login realizado com sucesso!');
+                    // Verificar status do usuário
+                    if (dados.status === 'aprovado') {
+                        usuarioLogado = user;
+                        document.getElementById('loginScreen').classList.remove('active');
+                        document.getElementById('pixGeneratorScreen').classList.add('active');
+                        
+                        document.getElementById('displayAgencia').innerText = dados.agencia || '1234';
+                        document.getElementById('displayConta').innerText = dados.conta || '56789-1';
+                        
+                        document.getElementById('vipBadge').style.display = 'none';
+                        
+                        mostrarToast('✅ Login realizado com sucesso!');
+                    } else {
+                        // Usuário ainda não aprovado
+                        document.getElementById('loginScreen').classList.remove('active');
+                        document.getElementById('pendingScreen').classList.add('active');
+                    }
                 } else {
                     mostrarToast('❌ Senha incorreta!');
                 }
@@ -1453,26 +1606,34 @@
                 return;
             }
             
+            // Salvar dados do usuário com status PENDENTE
             const usuarioDados = {
                 usuario: user,
                 email: email,
                 senha: senha,
-                plano: 'PENDENTE',
+                plano: nomePlanoSelecionado || 'Pendente',
+                status: 'pendente', // Status inicial: pendente
                 dataCadastro: new Date().toLocaleString()
             };
             
             localStorage.setItem('usuario_' + user, JSON.stringify(usuarioDados));
             localStorage.setItem('ultimoUsuario', user);
             
+            usuarioAguardandoAprovacao = user;
+            
             successDiv.style.display = 'block';
+            
+            // Simular notificação para o dono (você)
+            console.log('🔔 NOVO CADASTRO AGUARDANDO APROVAÇÃO:', user);
+            mostrarToast('📢 Novo usuário aguardando aprovação!');
             
             setTimeout(() => {
                 document.getElementById('registerScreen').classList.remove('active');
-                document.getElementById('loginScreen').classList.add('active');
+                document.getElementById('pendingScreen').classList.add('active');
             }, 2000);
         }
 
-        // ==================== FUNÇÕES DA TELA 4: DADOS BANCÁRIOS ====================
+        // ==================== FUNÇÕES DA TELA 5: DADOS BANCÁRIOS ====================
         function salvarDadosBancarios() {
             const agencia = document.getElementById('bankAgencia').value;
             const conta = document.getElementById('bankConta').value;
@@ -1483,16 +1644,53 @@
                 return;
             }
             
-            localStorage.setItem('agencia', agencia);
-            localStorage.setItem('conta', `${conta}-${digito}`);
+            // Atualizar dados do usuário com informações bancárias
+            if (usuarioLogado) {
+                const userData = JSON.parse(localStorage.getItem('usuario_' + usuarioLogado));
+                userData.agencia = agencia;
+                userData.conta = `${conta}-${digito}`;
+                localStorage.setItem('usuario_' + usuarioLogado, JSON.stringify(userData));
+            }
             
             document.getElementById('bankScreen').classList.remove('active');
-            document.getElementById('loginScreen').classList.add('active');
+            document.getElementById('pixGeneratorScreen').classList.add('active');
             
-            mostrarToast('✅ Dados salvos! Faça login com seu usuário.');
+            document.getElementById('displayAgencia').innerText = agencia;
+            document.getElementById('displayConta').innerText = `${conta}-${digito}`;
+            
+            mostrarToast('✅ Dados salvos com sucesso!');
         }
 
-        // ==================== FUNÇÕES DA TELA 5: GERADOR PIX ====================
+        // ==================== FUNÇÕES DE APROVAÇÃO (PARA VOCÊ, DONO) ====================
+        // Função para aprovar um usuário (você chama manualmente)
+        function aprovarUsuario(usuario) {
+            const userData = JSON.parse(localStorage.getItem('usuario_' + usuario));
+            if (userData) {
+                userData.status = 'aprovado';
+                localStorage.setItem('usuario_' + usuario, JSON.stringify(userData));
+                console.log('✅ Usuário aprovado:', usuario);
+                mostrarToast(`✅ Usuário ${usuario} aprovado!`);
+            }
+        }
+
+        // Função para listar usuários pendentes (no console)
+        function listarPendentes() {
+            console.log('📋 USUÁRIOS PENDENTES:');
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('usuario_')) {
+                    const userData = JSON.parse(localStorage.getItem(key));
+                    if (userData.status === 'pendente') {
+                        console.log(`- ${userData.usuario} (${userData.email}) - ${userData.dataCadastro}`);
+                    }
+                }
+            }
+        }
+
+        // Exemplo de como aprovar manualmente (descomente e use no console)
+        // aprovarUsuario('nome_do_usuario');
+
+        // ==================== FUNÇÕES DA TELA 6: GERADOR PIX ====================
         function gerarPix() {
             const chave = document.getElementById('pixChave').value;
             const valor = document.getElementById('pixValor').value;
@@ -1609,8 +1807,11 @@
                 document.getElementById('loginUser').value = ultimoUsuario;
             }
             
-            // Pré-preencher dados do dono no campo de usuário
             document.getElementById('loginUser').placeholder = "rhyanxzk9 (dono)";
+            
+            // Listar pendentes no console (para você ver)
+            console.log('🔍 Para ver usuários pendentes, digite: listarPendentes()');
+            console.log('🔍 Para aprovar um usuário, digite: aprovarUsuario("usuario")');
         };
     </script>
 </body>
