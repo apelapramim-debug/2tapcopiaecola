@@ -3,1500 +3,1325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2TAP • Sistema Completo</title>
+    <title>🔥 SETPIX7</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: #0a0a0a;
+            background: #000000;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.03) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .container {
             width: 100%;
-            max-width: 1280px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* ========== TELA DE PLANOS ========== */
-        .plans-screen {
-            background: #111;
-            border: 1px solid #FFD700;
-            border-radius: 40px;
-            padding: 50px;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .plans-screen::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        .header-gold {
-            text-align: center;
-            margin-bottom: 40px;
+            max-width: 1200px;
             position: relative;
         }
 
-        .header-gold h1 {
-            color: #FFD700;
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-shadow: 0 0 30px #FFD700;
+        .area-clique-dono {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 80px;
+            z-index: 9999;
+            cursor: pointer;
+            background: transparent;
         }
 
-        .header-gold p {
-            color: #888;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
-        .badge-2tap {
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            color: #0a0a0a;
-            padding: 5px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-block;
-            margin-top: 15px;
-        }
-
-        .login-button-header {
-            position: absolute;
+        .login-dono {
+            position: fixed;
             top: 20px;
             right: 20px;
-            background: transparent;
-            border: 2px solid #FFD700;
-            color: #FFD700;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 600;
+            background: linear-gradient(135deg, #ff0000, #990000);
+            border: 3px solid #ffffff;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.3s;
-            z-index: 20;
-        }
-
-        .login-button-header:hover {
-            background: #FFD700;
-            color: #0a0a0a;
-        }
-
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 40px;
-            position: relative;
-            margin-top: 60px;
-        }
-
-        .plan-card {
-            background: #1a1a1a;
-            border: 1px solid #FFD700;
-            border-radius: 30px;
-            padding: 30px 25px;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
-        }
-
-        .plan-card.selected {
-            border: 3px solid #FFD700;
-            background: linear-gradient(135deg, #1a1a1a, #222);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.4);
-        }
-
-        .plan-card.selected::before {
-            content: '✅ SELECIONADO';
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: #FFD700;
-            color: #0a0a0a;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .plan-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .plan-name {
-            color: #FFD700;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .plan-price {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .price-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #FFD700;
-        }
-
-        .price-period {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        .plan-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .plan-features li {
-            color: #ddd;
-            padding: 10px 0;
-            border-bottom: 1px solid #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .plan-features li::before {
-            content: '✓';
-            color: #FFD700;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .feature-highlight {
-            color: #FFD700 !important;
-            font-weight: 600;
-        }
-
-        .btn-select-plan {
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            border: 2px solid #FFD700;
-            border-radius: 15px;
-            color: #FFD700;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-select-plan:hover {
-            background: #FFD700;
-            color: #0a0a0a;
-        }
-
-        /* ========== ÁREA DE PAGAMENTO ========== */
-        .payment-area {
-            background: #1a1a1a;
-            border: 1px solid #FFD700;
-            border-radius: 30px;
-            padding: 40px;
-            margin-top: 30px;
+            z-index: 10000;
             display: none;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.5);
+            text-transform: uppercase;
+            border: 2px solid #ffaa00;
+            animation: pulse 1.5s infinite;
         }
 
-        .payment-area.active {
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 80px rgba(255, 215, 0, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+        }
+
+        .login-dono.visible {
             display: block;
         }
 
-        .payment-title {
-            color: #FFD700;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
+        .login-dono:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #ff4400, #cc0000);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 1);
+        }
+
+        .planos-screen {
+            background: #111111;
+            border: 2px solid #ff0000;
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        }
+
+        h1 {
             text-align: center;
+            font-size: 3rem;
+            color: #ff0000;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            margin-bottom: 10px;
         }
 
-        .selected-plan-info {
-            background: #222;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .selected-plan-name {
-            color: #FFD700;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .selected-plan-price {
-            color: #FFD700;
-            font-size: 2rem;
-            font-weight: 800;
-        }
-
-        .pix-area {
-            background: #222;
-            border-radius: 20px;
-            padding: 40px;
+        .subtitle {
             text-align: center;
-            margin: 20px 0;
-            border: 2px dashed #FFD700;
+            color: #cccccc;
+            margin-bottom: 40px;
         }
 
-        .pix-value {
-            font-size: 3.5rem;
-            color: #FFD700;
-            font-weight: 800;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
         }
 
-        .qr-code-box {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
+        .plano-card {
+            background: #1a1a1a;
+            border: 1px solid #ff0000;
+            border-radius: 30px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .plano-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.3);
+            border: 2px solid #ff0000;
+        }
+
+        .plano-card.popular {
+            border: 3px solid #ff0000;
+            background: #220000;
+        }
+
+        .popular-badge {
+            background: #ff0000;
+            color: #000000;
+            padding: 5px 20px;
+            border-radius: 30px;
             display: inline-block;
-            margin: 20px 0;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        .qr-code-box img {
-            width: 220px;
-            height: 220px;
+        .plano-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ff0000;
         }
 
-        .pix-code-box {
-            background: #111;
-            border: 2px dashed #FFD700;
-            border-radius: 15px;
-            padding: 25px;
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
-            margin: 30px 0;
-            color: #FFD700;
+        .plano-nome {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff0000;
+            margin-bottom: 15px;
+        }
+
+        .preco {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .preco small {
             font-size: 1rem;
-            line-height: 1.5;
+            color: #999999;
         }
 
-        .btn-copy {
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
+        .features {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .features li {
+            padding: 10px 0;
+            color: #cccccc;
+            border-bottom: 1px solid #333333;
+        }
+
+        .btn-comprar {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid #ff0000;
+            color: #ff0000;
             border-radius: 15px;
-            color: #0a0a0a;
-            font-weight: 700;
             font-size: 1.2rem;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            margin: 20px 0;
         }
 
-        .btn-copy:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        .btn-comprar:hover {
+            background: #ff0000;
+            color: #000000;
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4);
         }
 
-        .btn-back {
-            background: transparent;
-            border: 2px solid #FFD700;
-            color: #FFD700;
-            padding: 12px 30px;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-right: 15px;
-        }
-
-        .btn-back:hover {
-            background: #FFD700;
-            color: #0a0a0a;
-        }
-
-        .btn-finish {
-            flex: 1;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
-            border-radius: 12px;
-            color: #0a0a0a;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-finish:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        /* ========== TELA DE LOGIN ========== */
         .login-screen {
-            background: #111;
-            border: 1px solid #FFD700;
+            background: #111111;
+            border: 2px solid #ff0000;
             border-radius: 40px;
             padding: 50px;
             max-width: 450px;
             margin: 0 auto;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
             display: none;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
         }
 
         .login-screen.active {
             display: block;
         }
 
-        .login-icon {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .login-icon svg {
-            width: 80px;
-            height: 80px;
-            fill: #FFD700;
-        }
-
         .login-title {
-            color: #FFD700;
+            color: #ff0000;
             font-size: 2rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .login-subtitle {
-            color: #888;
             text-align: center;
             margin-bottom: 30px;
-            font-size: 0.9rem;
         }
 
         .form-group {
-            width: 100%;
             margin-bottom: 20px;
         }
 
-        .form-group label {
-            display: block;
-            color: #FFD700;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 15px;
             background: #1a1a1a;
-            border: 2px solid #333;
-            border-radius: 12px;
-            color: #FFD700;
+            border: 2px solid #333333;
+            border-radius: 15px;
+            color: #ff0000;
             font-size: 1rem;
-            transition: all 0.3s;
         }
 
-        .form-group input:focus {
-            border-color: #FFD700;
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #ff0000;
             outline: none;
         }
 
         .btn-login {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
+            background: #ff0000;
             border: none;
-            border-radius: 12px;
-            color: #0a0a0a;
-            font-weight: 700;
+            border-radius: 15px;
+            color: #000000;
+            font-weight: bold;
             font-size: 1.1rem;
             cursor: pointer;
             margin: 10px 0;
         }
 
         .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            background: #cc0000;
         }
 
-        .register-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #888;
-        }
-
-        .register-link a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* ========== TELA DE CADASTRO ========== */
-        .register-screen {
-            background: #111;
-            border: 1px solid #FFD700;
-            border-radius: 40px;
-            padding: 50px;
-            max-width: 450px;
-            margin: 0 auto;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            display: none;
-        }
-
-        .register-screen.active {
-            display: block;
-        }
-
-        .register-icon {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .register-icon svg {
-            width: 80px;
-            height: 80px;
-            fill: #FFD700;
-        }
-
-        .register-title {
-            color: #FFD700;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .register-subtitle {
-            color: #888;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 0.9rem;
-        }
-
-        .error-message {
-            color: #ff4444;
-            text-align: center;
-            margin: 10px 0;
-            padding: 10px;
-            background: rgba(255, 68, 68, 0.1);
-            border-radius: 8px;
-            display: none;
-        }
-
-        .success-message {
-            color: #00ff88;
-            text-align: center;
-            margin: 10px 0;
-            padding: 10px;
-            background: rgba(0, 255, 136, 0.1);
-            border-radius: 8px;
-            display: none;
-        }
-
-        .btn-register {
+        .btn-voltar {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
-            border-radius: 12px;
-            color: #0a0a0a;
-            font-weight: 700;
-            font-size: 1.1rem;
+            background: transparent;
+            border: 2px solid #ff0000;
+            border-radius: 15px;
+            color: #ff0000;
+            font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
         }
 
-        .btn-register:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        .btn-voltar:hover {
+            background: #ff0000;
+            color: #000000;
         }
 
-        /* ========== TELA DE DADOS BANCÁRIOS ========== */
-        .bank-screen {
-            background: #111;
-            border: 1px solid #FFD700;
+        .admin-screen {
+            background: #111111;
+            border: 2px solid #ff0000;
             border-radius: 40px;
             padding: 50px;
-            max-width: 450px;
-            margin: 0 auto;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
             display: none;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
         }
 
-        .bank-screen.active {
+        .admin-screen.active {
             display: block;
         }
 
-        .bank-icon {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .bank-icon svg {
-            width: 80px;
-            height: 80px;
-            fill: #FFD700;
-        }
-
-        .bank-title {
-            color: #FFD700;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .btn-next {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
-            border-radius: 12px;
-            color: #0a0a0a;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .btn-next:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        /* ========== TELA DO GERADOR PIX ========== */
-        .pix-generator-screen {
-            background: #111;
-            border: 1px solid #FFD700;
-            border-radius: 40px;
-            padding: 50px;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            display: none;
-        }
-
-        .pix-generator-screen.active {
-            display: block;
-        }
-
-        .user-info-header {
-            background: #222;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
+        .admin-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 40px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .user-bank-info {
-            color: #FFD700;
-            font-size: 1.1rem;
+        .admin-header h2 {
+            color: #ff0000;
+            font-size: 2rem;
         }
 
-        .user-bank-info span {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        .generator-title {
-            color: #FFD700;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .generator-grid {
+        .admin-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-bottom: 30px;
         }
 
-        .input-field {
-            width: 100%;
-        }
-
-        .input-field label {
-            display: block;
-            color: #FFD700;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-
-        .input-field input {
-            width: 100%;
-            padding: 15px;
+        .stat-card {
             background: #1a1a1a;
-            border: 2px solid #333;
-            border-radius: 12px;
-            color: #FFD700;
-            font-size: 1rem;
-        }
-
-        .input-field input:focus {
-            border-color: #FFD700;
-            outline: none;
-        }
-
-        .btn-generate {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border: none;
-            border-radius: 15px;
-            color: #0a0a0a;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 20px 0;
-        }
-
-        .btn-generate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        .result-area {
-            background: #1a1a1a;
-            border: 2px dashed #FFD700;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            display: none;
-        }
-
-        .result-area.active {
-            display: block;
-        }
-
-        .qr-result {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .qr-result img {
-            width: 200px;
-            height: 200px;
-            border: 3px solid #FFD700;
-            border-radius: 15px;
-            padding: 10px;
-            background: white;
-        }
-
-        .pix-code-result {
-            background: #111;
-            border: 1px solid #FFD700;
-            border-radius: 12px;
-            padding: 20px;
-            font-family: monospace;
-            word-break: break-all;
-            margin: 20px 0;
-            color: #FFD700;
-        }
-
-        .contact-selector {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .contact-card {
-            background: #222;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .contact-card:hover {
-            border-color: #FFD700;
-            transform: translateY(-3px);
-        }
-
-        .contact-card.selected {
-            border: 2px solid #FFD700;
-            background: #2a2a0a;
-        }
-
-        .contact-name {
-            color: #FFD700;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .contact-number {
-            color: #888;
-            font-size: 0.8rem;
-        }
-
-        .btn-send-whatsapp {
-            width: 100%;
-            padding: 15px;
-            background: #25D366;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .btn-send-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-        }
-
-        .floating-support {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-        }
-
-        .support-button {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-            transition: all 0.3s;
-            border: none;
-            font-size: 24px;
-        }
-
-        .support-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
-        }
-
-        .support-modal {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            background: #111;
-            border: 2px solid #FFD700;
+            border: 1px solid #ff0000;
             border-radius: 20px;
             padding: 25px;
-            width: 280px;
-            display: none;
-        }
-
-        .support-modal.active {
-            display: block;
-        }
-
-        .support-modal h3 {
-            color: #FFD700;
-            margin-bottom: 15px;
-        }
-
-        .telegram-contact {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
             text-align: center;
         }
 
-        .telegram-user {
-            color: #FFD700;
-            font-size: 1.2rem;
-            font-weight: 700;
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            margin-top: 10px;
+        }
+
+        .usuarios-lista {
+            background: #1a1a1a;
+            border: 1px solid #ff0000;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .usuarios-lista h3 {
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            color: #ff0000;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #ff0000;
+        }
+
+        td {
+            padding: 15px;
+            color: #cccccc;
+            border-bottom: 1px solid #333333;
+        }
+
+        .pago-badge {
+            background: #00aa00;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .expirado-badge {
+            background: #ff0000;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .pagamento-screen {
+            background: #111111;
+            border: 2px solid #ff0000;
+            border-radius: 40px;
+            padding: 50px;
+            max-width: 500px;
+            margin: 0 auto;
+            display: none;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
+        }
+
+        .pagamento-screen.active {
+            display: block;
+        }
+
+        .voltar-btn {
+            background: none;
+            border: none;
+            color: #ff0000;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .resumo-pedido {
+            background: #1a1a1a;
+            border: 1px solid #ff0000;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .resumo-plano {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .resumo-preco {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff0000;
             margin: 10px 0;
         }
 
-        .btn-telegram {
+        .pix-info {
+            text-align: center;
+            background: #1a1a1a;
+            border: 2px dashed #ff0000;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .chave-pix {
+            background: #000000;
+            border: 2px solid #ff0000;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff0000;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+
+        .qrcode-box {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .btn-copiar {
+            background: #ff0000;
+            color: #000000;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .painel-screen {
+            background: #111111;
+            border: 2px solid #ff0000;
+            border-radius: 40px;
+            padding: 50px;
+            display: none;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
+        }
+
+        .painel-screen.active {
+            display: block;
+        }
+
+        .painel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .boas-vindas h2 {
+            color: #ff0000;
+            margin-bottom: 5px;
+        }
+
+        .badge-plano {
+            background: #ff0000;
+            color: #000000;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .info-expiracao {
+            background: #1a1a1a;
+            border: 1px solid #ff0000;
+            padding: 10px 25px;
+            border-radius: 30px;
+            color: #ff0000;
+        }
+
+        .msg-aviso {
+            background: #220000;
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .gerador-pix {
+            background: #1a1a1a;
+            border: 1px solid #ff0000;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .gerador-pix h3 {
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #cccccc;
+        }
+
+        .input-group input,
+        .input-group select {
             width: 100%;
             padding: 12px;
-            background: #0088cc;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
+            background: #000000;
+            border: 2px solid #333333;
+            border-radius: 10px;
+            color: #ff0000;
         }
 
-        .toast-message {
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #ff0000;
+            outline: none;
+        }
+
+        .btn-gerar {
+            background: #ff0000;
+            color: #000000;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .resultado-pix {
+            background: #000000;
+            border: 1px solid #ff0000;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+            color: #cccccc;
+        }
+
+        .toast {
             position: fixed;
-            bottom: 100px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: #FFD700;
-            color: #0a0a0a;
+            background: #ff0000;
+            color: #000000;
             padding: 15px 30px;
             border-radius: 50px;
-            font-weight: 600;
             display: none;
-            z-index: 1000;
+            z-index: 10000;
+            font-weight: bold;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
         }
 
-        @media (max-width: 968px) {
-            .plans-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .flex-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
-        @media (max-width: 768px) {
-            .plans-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .login-button-header {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin-bottom: 20px;
-            }
+        .btn-toggle {
+            background: #333;
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .btn-toggle:hover {
+            background: #ff0000;
+            color: #000;
         }
     </style>
 </head>
 <body>
+    <div class="area-clique-dono" onclick="mostrarLoginDono()"></div>
+    
+    <button class="login-dono" id="btnDono" onclick="mostrarLoginDono()">
+        👑 DONO MASTER 👑
+    </button>
+    
     <div class="container">
-        <!-- TELA 1: PLANOS -->
-        <div id="plansScreen" class="plans-screen">
-            <button class="login-button-header" onclick="mostrarTelaLogin()">🔐 LOGIN</button>
+        <!-- TELA DE PLANOS -->
+        <div id="planosScreen" class="planos-screen">
+            <h1>🔥 SETPIX7</h1>
+            <div class="subtitle">Escolha seu plano de acesso</div>
             
-            <div class="header-gold">
-                <h1>2TAP • GOLD</h1>
-                <p>Escolha seu plano de acesso</p>
-                <div class="badge-2tap">⚡ APENAS PIX ⚡</div>
-            </div>
-
-            <div class="plans-grid">
-                <!-- Plano Semanal -->
-                <div class="plan-card" data-plan="weekly">
-                    <div class="plan-icon">⚡</div>
-                    <div class="plan-name">SEMANAL</div>
-                    <div class="plan-price">
-                        <span class="price-value">R$ 150</span>
-                        <span class="price-period">/semana</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li>7 dias de acesso</li>
-                        <li>PIX ILIMITADO</li>
-                        <li>Todos os bancos</li>
-                        <li>Suporte prioritário</li>
+            <div class="planos-grid">
+                <div class="plano-card">
+                    <div class="plano-icon">⚡</div>
+                    <div class="plano-nome">SEMANAL</div>
+                    <div class="preco">R$ 150 <small>/semana</small></div>
+                    <ul class="features">
+                        <li>✓ 7 dias de acesso</li>
+                        <li>✓ Gerador PIX</li>
+                        <li>✓ QR Code automático</li>
+                        <li>✓ Envio WhatsApp</li>
                     </ul>
-                    <button class="btn-select-plan" onclick="selecionarPlano('weekly', 150, 'Semanal')">SELECIONAR</button>
+                    <button class="btn-comprar" onclick="selecionarPlano('Semanal', 150, 7)">COMPRAR</button>
                 </div>
-
-                <!-- Plano Mensal -->
-                <div class="plan-card" data-plan="monthly">
-                    <div class="plan-icon">🔥</div>
-                    <div class="plan-name">MENSAL</div>
-                    <div class="plan-price">
-                        <span class="price-value">R$ 450</span>
-                        <span class="price-period">/mês</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li>30 dias de acesso</li>
-                        <li>PIX ILIMITADO</li>
-                        <li>Todos os bancos</li>
-                        <li>Suporte VIP 24h</li>
-                    </ul>
-                    <button class="btn-select-plan" onclick="selecionarPlano('monthly', 450, 'Mensal')">SELECIONAR</button>
-                </div>
-
-                <!-- Plano Anual -->
-                <div class="plan-card" data-plan="yearly">
-                    <div class="plan-icon">💎</div>
-                    <div class="plan-name">ANUAL</div>
-                    <div class="plan-price">
-                        <span class="price-value">R$ 1.500</span>
-                        <span class="price-period">/ano</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li>365 dias de acesso</li>
-                        <li>PIX ILIMITADO</li>
-                        <li>Todos os bancos</li>
-                        <li>Suporte VIP 24h</li>
-                    </ul>
-                    <button class="btn-select-plan" onclick="selecionarPlano('yearly', 1500, 'Anual')">SELECIONAR</button>
-                </div>
-            </div>
-
-            <!-- Área de Pagamento PIX -->
-            <div id="paymentArea" class="payment-area">
-                <div class="payment-title">💰 PAGAMENTO VIA PIX</div>
                 
-                <div class="selected-plan-info">
-                    <span class="selected-plan-name" id="selectedPlanName">Plano Semanal</span>
-                    <span class="selected-plan-price" id="selectedPlanPrice">R$ 150</span>
+                <div class="plano-card popular">
+                    <div class="popular-badge">🔥 MAIS VENDIDO</div>
+                    <div class="plano-icon">💎</div>
+                    <div class="plano-nome">MENSAL</div>
+                    <div class="preco">R$ 450 <small>/mês</small></div>
+                    <ul class="features">
+                        <li>✓ 30 dias de acesso</li>
+                        <li>✓ Gerador PIX</li>
+                        <li>✓ QR Code automático</li>
+                        <li>✓ Envio WhatsApp</li>
+                        <li>✓ Suporte prioritário</li>
+                    </ul>
+                    <button class="btn-comprar" onclick="selecionarPlano('Mensal', 450, 30)">COMPRAR</button>
                 </div>
-
-                <div class="pix-area">
-                    <div class="pix-value" id="pixValue">R$ 150,00</div>
-                    
-                    <div class="qr-code-box">
-                        <img id="qrCodeImg" src="" alt="QR Code Pix">
-                    </div>
-
-                    <div class="pix-code-box" id="pixCode">
-                        Selecione um plano para gerar o código
-                    </div>
-
-                    <button class="btn-copy" onclick="copiarCodigoPix()">📋 COPIAR CÓDIGO PIX</button>
-                </div>
-
-                <div style="display: flex; gap: 15px;">
-                    <button class="btn-back" onclick="voltarPlanos()">VOLTAR</button>
-                    <button class="btn-finish" onclick="confirmarPagamento()">JÁ PAGUEI • CONFIRMAR</button>
+                
+                <div class="plano-card">
+                    <div class="plano-icon">👑</div>
+                    <div class="plano-nome">ANUAL</div>
+                    <div class="preco">R$ 1.500 <small>/ano</small></div>
+                    <ul class="features">
+                        <li>✓ 365 dias de acesso</li>
+                        <li>✓ Gerador PIX</li>
+                        <li>✓ QR Code automático</li>
+                        <li>✓ Envio WhatsApp</li>
+                        <li>✓ Suporte VIP</li>
+                        <li>✓ 2 meses grátis</li>
+                    </ul>
+                    <button class="btn-comprar" onclick="selecionarPlano('Anual', 1500, 365)">COMPRAR</button>
                 </div>
             </div>
         </div>
-
-        <!-- TELA 2: LOGIN -->
+        
+        <!-- TELA DE LOGIN DO DONO -->
         <div id="loginScreen" class="login-screen">
-            <div class="login-icon">
-                <svg viewBox="0 0 100 100">
-                    <circle cx="50" cy="40" r="20" fill="#111" stroke="#FFD700" stroke-width="3"/>
-                    <circle cx="35" cy="35" r="3" fill="#FFD700"/>
-                    <circle cx="65" cy="35" r="3" fill="#FFD700"/>
-                    <path d="M35 50 Q50 60,65 50" stroke="#FFD700" stroke-width="2" fill="none"/>
-                    <rect x="40" y="65" width="20" height="25" fill="#111" stroke="#FFD700" stroke-width="2"/>
-                </svg>
-            </div>
-            <div class="login-title">🔐 ACESSO 2TAP</div>
-            <div class="login-subtitle">Digite seus dados para entrar</div>
-
+            <div class="login-title">👑 ACESSO DONO</div>
+            
             <div class="form-group">
-                <label>USUÁRIO</label>
-                <input type="text" id="loginUser" placeholder="Seu usuário">
-            </div>
-
-            <div class="form-group">
-                <label>SENHA</label>
-                <input type="password" id="loginPass" placeholder="Sua senha">
-            </div>
-
-            <button class="btn-login" onclick="fazerLogin()">ENTRAR</button>
-
-            <div class="register-link">
-                Não tem cadastro? <a onclick="mostrarCadastro()">CADASTRE-SE</a>
+                <input type="text" id="loginUser" placeholder="Usuário" value="rhyanxzk9">
             </div>
             
-            <button class="btn-back" style="margin-top: 20px;" onclick="voltarInicio()">VOLTAR</button>
+            <div class="form-group">
+                <input type="password" id="loginSenha" placeholder="Senha" value="Denner9@">
+            </div>
+            
+            <button class="btn-login" onclick="fazerLoginDono()">ENTRAR</button>
+            <button class="btn-voltar" onclick="voltarParaPlanos()">VOLTAR</button>
         </div>
-
-        <!-- TELA 3: CADASTRO -->
-        <div id="registerScreen" class="register-screen">
-            <div class="register-icon">
-                <svg viewBox="0 0 100 100">
-                    <circle cx="50" cy="30" r="20" fill="#111" stroke="#FFD700" stroke-width="3"/>
-                    <path d="M20 80 L80 80" stroke="#FFD700" stroke-width="3"/>
-                    <circle cx="35" cy="70" r="10" fill="#111" stroke="#FFD700" stroke-width="3"/>
-                    <circle cx="65" cy="70" r="10" fill="#111" stroke="#FFD700" stroke-width="3"/>
-                </svg>
+        
+        <!-- PAINEL ADMIN (DONO) -->
+        <div id="adminScreen" class="admin-screen">
+            <div class="admin-header">
+                <h2>👑 Painel do Dono - SETPIX7</h2>
+                <button class="btn-voltar" style="width:auto; padding:10px 30px;" onclick="sairAdmin()">SAIR</button>
             </div>
-            <div class="register-title">📝 CRIAR CONTA</div>
-            <div class="register-subtitle">Preencha os dados abaixo</div>
-
-            <div class="form-group">
-                <label>USUÁRIO</label>
-                <input type="text" id="regUser" placeholder="Escolha um nome de usuário">
+            
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalUsuarios">0</div>
+                    <div class="stat-label">Total de usuários</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="usuariosHoje">0</div>
+                    <div class="stat-label">Pagamentos hoje</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="receitaHoje">R$ 0</div>
+                    <div class="stat-label">Receita hoje</div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label>EMAIL</label>
-                <input type="email" id="regEmail" placeholder="seu@email.com">
+            
+            <div class="usuarios-lista">
+                <h3>📋 Usuários que pagaram</h3>
+                <table id="tabelaUsuarios">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Plano</th>
+                            <th>Pagamento</th>
+                            <th>Expira em</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaUsuariosBody"></tbody>
+                </table>
             </div>
-
-            <div class="form-group">
-                <label>SENHA</label>
-                <input type="password" id="regPass" placeholder="Crie uma senha">
+            
+            <div id="areaConfirmacaoPagamento" style="display: none; margin-top: 30px; background: #220000; border: 2px solid #ff0000; border-radius: 20px; padding: 25px;">
+                <h3 style="color:#ff0000; margin-bottom:15px;">⏳ PAGAMENTOS PENDENTES</h3>
+                <div id="listaPagamentosPendentes"></div>
             </div>
-
-            <div class="form-group">
-                <label>CONFIRMAR SENHA</label>
-                <input type="password" id="regConfirmPass" placeholder="Digite a senha novamente">
-            </div>
-
-            <div class="error-message" id="registerError"></div>
-            <div class="success-message" id="registerSuccess">✅ Cadastro realizado com sucesso!</div>
-
-            <button class="btn-register" onclick="finalizarCadastro()">CRIAR CONTA</button>
-            <button class="btn-back" style="margin-top: 20px;" onclick="voltarLogin()">VOLTAR</button>
         </div>
-
-        <!-- TELA 4: DADOS BANCÁRIOS -->
-        <div id="bankScreen" class="bank-screen">
-            <div class="bank-icon">
-                <svg viewBox="0 0 100 100">
-                    <rect x="20" y="40" width="60" height="40" fill="#111" stroke="#FFD700" stroke-width="3" rx="5"/>
-                    <rect x="35" y="20" width="30" height="25" fill="#111" stroke="#FFD700" stroke-width="3" rx="3"/>
-                </svg>
+        
+        <!-- TELA DE PAGAMENTO -->
+        <div id="pagamentoScreen" class="pagamento-screen">
+            <button class="voltar-btn" onclick="voltarParaPlanos()">← VOLTAR</button>
+            
+            <h2 style="text-align:center; color:#ff0000;">💰 PAGAMENTO SETPIX7</h2>
+            
+            <div class="resumo-pedido">
+                <div class="resumo-plano" id="planoEscolhido">Plano Mensal</div>
+                <div class="resumo-preco" id="valorEscolhido">R$ 450</div>
             </div>
-            <div class="bank-title">🏦 DADOS BANCÁRIOS</div>
-
-            <div class="form-group">
-                <label>AGÊNCIA (sem dígito)</label>
-                <input type="text" id="bankAgencia" placeholder="Ex: 1234">
+            
+            <div class="pix-info">
+                <h3 style="margin-bottom:20px; color:#ff0000;">PIX DO PAINEL</h3>
+                
+                <div class="qrcode-box">
+                    <img id="qrCodeImg" src="" style="width:200px; height:200px;">
+                </div>
+                
+                <div style="font-weight:bold; margin:10px 0; color:#ff0000;">Chave PIX:</div>
+                <div class="chave-pix" id="chavePixDono">12359317903</div>
+                
+                <button class="btn-copiar" onclick="copiarChavePix()">
+                    📋 COPIAR CHAVE
+                </button>
+                
+                <div style="color:#cccccc; margin-top:20px;">
+                    1. Copie a chave acima<br>
+                    2. Pague no seu banco<br>
+                    3. Após pagar, clique em "JÁ PAGUEI"
+                </div>
             </div>
-
-            <div class="form-group">
-                <label>CONTA (sem dígito)</label>
-                <input type="text" id="bankConta" placeholder="Ex: 56789">
+            
+            <button class="btn-comprar" style="background:#ff0000; color:#000000; border:none;" onclick="solicitarConfirmacaoPagamento()">
+                ✅ JÁ PAGUEI • SOLICITAR ACESSO
+            </button>
+            
+            <div id="mensagemAguardando" style="display:none; background:#333333; color:#ffaa00; padding:15px; border-radius:10px; margin-top:20px; text-align:center;">
+                ⏳ Seu pedido foi enviado para o dono! Aguarde a confirmação (pode levar alguns minutos).
             </div>
-
-            <div class="form-group">
-                <label>DÍGITO DA CONTA</label>
-                <input type="text" id="bankDigito" placeholder="1" maxlength="1">
-            </div>
-
-            <button class="btn-next" onclick="salvarDadosBancarios()">CONTINUAR</button>
         </div>
-
-        <!-- TELA 5: GERADOR PIX -->
-        <div id="pixGeneratorScreen" class="pix-generator-screen">
-            <div class="user-info-header">
-                <div class="user-bank-info">
-                    <span>AGÊNCIA:</span> <span id="displayAgencia">1234</span>
-                </div>
-                <div class="user-bank-info">
-                    <span>CONTA:</span> <span id="displayConta">56789-1</span>
-                </div>
+        
+        <!-- TELA DE CADASTRO -->
+        <div id="cadastroScreen" class="pagamento-screen" style="display:none;">
+            <button class="voltar-btn" onclick="voltarParaPagamento()">← VOLTAR</button>
+            
+            <h2 style="text-align:center; color:#ff0000;">📝 CRIAR CONTA SETPIX7</h2>
+            
+            <div class="form-group">
+                <input type="text" id="cadNome" placeholder="Seu nome completo">
             </div>
-
-            <div class="generator-title">⚡ GERAR PIX • 2 CLIQUES</div>
-
-            <div class="generator-grid">
-                <div class="input-field">
-                    <label>CHAVE PIX DO RECEBEDOR</label>
-                    <input type="text" id="pixChave" placeholder="CPF, E-mail, Telefone..." value="contato@2tap.com">
-                </div>
-
-                <div class="input-field">
-                    <label>💰 VALOR (R$)</label>
-                    <input type="number" id="pixValor" step="0.01" placeholder="0,00">
-                </div>
-
-                <div class="input-field">
-                    <label>DESCRIÇÃO (opcional)</label>
-                    <input type="text" id="pixDescricao" placeholder="Pagamento">
-                </div>
+            
+            <div class="form-group">
+                <input type="email" id="cadEmail" placeholder="Seu e-mail">
             </div>
-
-            <button class="btn-generate" onclick="gerarPix()">⚡ GERAR PIX • ENTER ⚡</button>
-
-            <div id="pixResultArea" class="result-area">
-                <div class="qr-result">
-                    <img id="pixQrCode" src="" alt="QR Code Pix">
+            
+            <div class="form-group">
+                <input type="password" id="cadSenha" placeholder="Sua senha">
+            </div>
+            
+            <button class="btn-login" onclick="finalizarCadastro()">CRIAR ACESSO</button>
+        </div>
+        
+        <!-- PAINEL DO USUÁRIO -->
+        <div id="painelScreen" class="painel-screen">
+            <div class="painel-header">
+                <div class="boas-vindas">
+                    <h2>👋 Olá, <span id="nomeUsuario">Usuário</span></h2>
+                    <p>Bem-vindo ao SETPIX7</p>
                 </div>
-
-                <div class="pix-code-result" id="pixCodigo">
-                    Clique em GERAR PIX para criar o código
-                </div>
-
-                <div style="margin: 20px 0;">
-                    <button class="btn-copy" onclick="copiarPixGerado()">📋 COPIAR CÓDIGO</button>
-                </div>
-
-                <div style="margin-top: 30px;">
-                    <div style="color: #FFD700; margin-bottom: 15px;">📱 ENVIAR PARA:</div>
-                    <div class="contact-selector">
-                        <div class="contact-card" onclick="selecionarContato('joao')" id="contactJoao">
-                            <div class="contact-name">João Silva</div>
-                            <div class="contact-number">(11) 99999-9999</div>
+                <div class="badge-plano" id="planoUsuario">Plano Mensal</div>
+                <div class="info-expiracao" id="diasRestantes">30 dias</div>
+            </div>
+            
+            <div class="msg-aviso">
+                ⚠️ PIX para pagar o painel: <strong>12359317903</strong>
+            </div>
+            
+            <!-- GERADOR AVANÇADO -->
+            <div class="gerador-pix">
+                <h3>⚡ GERADOR DE PAGAMENTOS</h3>
+                
+                <!-- Dados da conta de origem (quem paga) - opcional -->
+                <div style="background:#220000; padding:15px; border-radius:10px; margin-bottom:20px;">
+                    <h4 style="color:#ff0000; margin-bottom:10px;">📤 DADOS DA CONTA DE ORIGEM (opcional)</h4>
+                    <div class="flex-row">
+                        <div style="flex:1;">
+                            <label>Agência (sem dígito)</label>
+                            <input type="text" id="origemAgencia" placeholder="Ex: 1234">
                         </div>
-                        <div class="contact-card" onclick="selecionarContato('maria')" id="contactMaria">
-                            <div class="contact-name">Maria Santos</div>
-                            <div class="contact-number">(11) 88888-8888</div>
-                        </div>
-                        <div class="contact-card" onclick="selecionarContato('pedro')" id="contactPedro">
-                            <div class="contact-name">Pedro Souza</div>
-                            <div class="contact-number">(11) 77777-7777</div>
-                        </div>
-                        <div class="contact-card" onclick="selecionarContato('grupo')" id="contactGrupo">
-                            <div class="contact-name">Grupo Vendas</div>
-                            <div class="contact-number">Grupo WhatsApp</div>
+                        <div style="flex:1;">
+                            <label>Conta (com dígito)</label>
+                            <input type="text" id="origemConta" placeholder="Ex: 56789-1">
                         </div>
                     </div>
-
-                    <button class="btn-send-whatsapp" onclick="enviarWhatsApp()">
-                        📲 ENVIAR VIA WHATSAPP
-                    </button>
                 </div>
+                
+                <!-- Escolha do tipo de recebedor -->
+                <div style="margin-bottom:20px;">
+                    <button class="btn-toggle" id="btnToggleTipo" onclick="toggleTipoRecebedor()">🔁 Alternar para Dados Bancários</button>
+                </div>
+                
+                <!-- Área PIX -->
+                <div id="areaPix">
+                    <div class="input-group">
+                        <label>🔑 Chave PIX do recebedor (CPF, e-mail, telefone)</label>
+                        <input type="text" id="chaveCliente" placeholder="Ex: 11999999999">
+                    </div>
+                </div>
+                
+                <!-- Área Dados Bancários (TED/DOC) -->
+                <div id="areaTed" style="display:none;">
+                    <h4 style="color:#ff0000; margin-bottom:10px;">🏦 DADOS BANCÁRIOS DO RECEBEDOR</h4>
+                    <div class="input-group">
+                        <label>Banco</label>
+                        <input type="text" id="tedBanco" placeholder="Ex: 001 - Banco do Brasil">
+                    </div>
+                    <div class="input-group">
+                        <label>Agência (sem dígito)</label>
+                        <input type="text" id="tedAgencia" placeholder="Ex: 1234">
+                    </div>
+                    <div class="input-group">
+                        <label>Conta (com dígito)</label>
+                        <input type="text" id="tedConta" placeholder="Ex: 56789-1">
+                    </div>
+                    <div class="input-group">
+                        <label>Tipo de conta</label>
+                        <select id="tedTipoConta">
+                            <option value="Corrente">Corrente</option>
+                            <option value="Poupança">Poupança</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>CPF/CNPJ do recebedor</label>
+                        <input type="text" id="tedCpf" placeholder="Ex: 123.456.789-00">
+                    </div>
+                    <div class="input-group">
+                        <label>Nome do recebedor</label>
+                        <input type="text" id="tedNome" placeholder="Ex: João da Silva">
+                    </div>
+                </div>
+                
+                <!-- Valor -->
+                <div class="input-group">
+                    <label>💰 Valor (R$)</label>
+                    <input type="number" id="valorPix" step="0.01" placeholder="0,00">
+                </div>
+                
+                <button class="btn-gerar" onclick="gerarPagamento()">GERAR PAGAMENTO</button>
+                
+                <div id="resultadoPix" class="resultado-pix"></div>
             </div>
         </div>
     </div>
-
-    <!-- SUPORTE FLUTUANTE -->
-    <div class="floating-support">
-        <div class="support-button" onclick="toggleSupport()">
-            💬
-        </div>
-        <div class="support-modal" id="supportModal">
-            <h3>💬 SUPORTE 2TAP</h3>
-            <p style="color: #888; margin-bottom: 15px;">Atendimento via Telegram</p>
-            
-            <div class="telegram-contact">
-                <div style="font-size: 40px; margin-bottom: 10px;">📱</div>
-                <div class="telegram-user">@suporte_2tap</div>
-                <div style="color: #888; font-size: 0.8rem; margin: 10px 0;">Tempo médio: 5min</div>
-            </div>
-            
-            <button class="btn-telegram" onclick="abrirTelegram()">
-                ABRIR TELEGRAM
-            </button>
-        </div>
-    </div>
-
-    <div class="toast-message" id="toast">✅ Operação realizada!</div>
-
+    
+    <div class="toast" id="toast"></div>
+    
     <script>
-        // ==================== VARIÁVEIS GLOBAIS ====================
-        let planoSelecionado = null;
+        // ==================== DADOS DO DONO ====================
+        const DONO = {
+            usuario: 'rhyanxzk9',
+            senha: 'Denner9@',
+            pix: '12359317903'
+        };
+        
+        // ==================== CONTROLE DE VISIBILIDADE ====================
+        const btnDono = document.getElementById('btnDono');
+        
+        function atualizarVisibilidadeBotaoDono() {
+            if (localStorage.getItem('usuario_logado') === 'dono') {
+                btnDono.classList.add('visible');
+            } else {
+                btnDono.classList.remove('visible');
+            }
+        }
+        
+        function mostrarTela(tela) {
+            document.getElementById('planosScreen').style.display = 'none';
+            document.getElementById('loginScreen').classList.remove('active');
+            document.getElementById('adminScreen').classList.remove('active');
+            document.getElementById('pagamentoScreen').classList.remove('active');
+            document.getElementById('cadastroScreen').style.display = 'none';
+            document.getElementById('painelScreen').classList.remove('active');
+            
+            if (tela === 'planos') {
+                document.getElementById('planosScreen').style.display = 'block';
+            } else if (tela === 'login') {
+                document.getElementById('loginScreen').classList.add('active');
+            } else if (tela === 'admin') {
+                document.getElementById('adminScreen').classList.add('active');
+            } else if (tela === 'pagamento') {
+                document.getElementById('pagamentoScreen').classList.add('active');
+            } else if (tela === 'cadastro') {
+                document.getElementById('cadastroScreen').style.display = 'block';
+            } else if (tela === 'painel') {
+                document.getElementById('painelScreen').classList.add('active');
+            }
+            
+            atualizarVisibilidadeBotaoDono();
+        }
+        
+        // ==================== BANCO DE DADOS ====================
+        let usuarios = [];
+        let usuarioAtual = null;
+        let planoSelecionado = '';
         let valorSelecionado = 0;
-        let nomePlanoSelecionado = '';
-        let contatoSelecionado = null;
-
-        // ==================== FUNÇÕES DA TELA 1: PLANOS ====================
-        function selecionarPlano(plano, valor, nome) {
+        let diasSelecionados = 0;
+        let pagamentosPendentes = [];
+        
+        function carregarUsuarios() {
+            const dados = localStorage.getItem('painel_usuarios');
+            if (dados) {
+                usuarios = JSON.parse(dados);
+            }
+            
+            const pendentes = localStorage.getItem('pagamentos_pendentes');
+            if (pendentes) {
+                pagamentosPendentes = JSON.parse(pendentes);
+            }
+        }
+        
+        function salvarUsuarios() {
+            localStorage.setItem('painel_usuarios', JSON.stringify(usuarios));
+        }
+        
+        function salvarPagamentosPendentes() {
+            localStorage.setItem('pagamentos_pendentes', JSON.stringify(pagamentosPendentes));
+        }
+        
+        // ==================== FUNÇÕES DO DONO ====================
+        function mostrarLoginDono() {
+            mostrarTela('login');
+        }
+        
+        function fazerLoginDono() {
+            const user = document.getElementById('loginUser').value;
+            const senha = document.getElementById('loginSenha').value;
+            
+            if (user === DONO.usuario && senha === DONO.senha) {
+                localStorage.setItem('usuario_logado', 'dono');
+                atualizarVisibilidadeBotaoDono();
+                mostrarTela('admin');
+                atualizarPainelAdmin();
+                mostrarToast('✅ Bem-vindo DONO!');
+            } else {
+                mostrarToast('❌ Acesso negado');
+            }
+        }
+        
+        function atualizarPainelAdmin() {
+            document.getElementById('totalUsuarios').innerText = usuarios.length;
+            
+            const hoje = new Date().toLocaleDateString();
+            const usuariosHoje = usuarios.filter(u => {
+                const dataPagamento = new Date(u.dataPagamento).toLocaleDateString();
+                return dataPagamento === hoje;
+            });
+            
+            document.getElementById('usuariosHoje').innerText = usuariosHoje.length;
+            
+            const receitaHoje = usuariosHoje.reduce((acc, u) => acc + u.valor, 0);
+            document.getElementById('receitaHoje').innerText = 'R$ ' + receitaHoje;
+            
+            const tbody = document.getElementById('listaUsuariosBody');
+            tbody.innerHTML = '';
+            
+            usuarios.sort((a, b) => new Date(b.dataPagamento) - new Date(a.dataPagamento));
+            
+            usuarios.forEach(u => {
+                const expiracao = new Date(u.expiracao);
+                const hoje = new Date();
+                const diasRestantes = Math.ceil((expiracao - hoje) / (1000 * 60 * 60 * 24));
+                
+                const status = diasRestantes > 0 ? 
+                    '<span class="pago-badge">✅ ATIVO</span>' : 
+                    '<span class="expirado-badge">❌ EXPIRADO</span>';
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${u.nome}</td>
+                    <td>${u.plano}</td>
+                    <td>${new Date(u.dataPagamento).toLocaleDateString()}</td>
+                    <td>${diasRestantes} dias</td>
+                    <td>${status}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+            
+            const areaPendentes = document.getElementById('areaConfirmacaoPagamento');
+            const listaPendentes = document.getElementById('listaPagamentosPendentes');
+            
+            if (pagamentosPendentes.length > 0) {
+                areaPendentes.style.display = 'block';
+                listaPendentes.innerHTML = '';
+                
+                pagamentosPendentes.forEach((p, index) => {
+                    const div = document.createElement('div');
+                    div.style.background = '#1a1a1a';
+                    div.style.border = '1px solid #ff0000';
+                    div.style.borderRadius = '10px';
+                    div.style.padding = '15px';
+                    div.style.marginBottom = '10px';
+                    
+                    div.innerHTML = `
+                        <p><strong>💰 Valor:</strong> R$ ${p.valor}</p>
+                        <p><strong>📅 Plano:</strong> ${p.plano}</p>
+                        <p><strong>⏰ Solicitado:</strong> ${new Date(p.data).toLocaleString()}</p>
+                        <div style="display:flex; gap:10px; margin-top:10px;">
+                            <button class="btn-login" style="background:#00aa00; color:white; padding:8px; margin:0;" onclick="confirmarPagamento(${index})">✅ CONFIRMAR PAGAMENTO</button>
+                            <button class="btn-voltar" style="padding:8px; margin:0;" onclick="recusarPagamento(${index})">❌ RECUSAR</button>
+                        </div>
+                    `;
+                    listaPendentes.appendChild(div);
+                });
+            } else {
+                areaPendentes.style.display = 'none';
+            }
+        }
+        
+        function sairAdmin() {
+            localStorage.removeItem('usuario_logado');
+            atualizarVisibilidadeBotaoDono();
+            mostrarTela('planos');
+        }
+        
+        // ==================== FUNÇÕES DOS PLANOS ====================
+        function selecionarPlano(plano, valor, dias) {
             planoSelecionado = plano;
             valorSelecionado = valor;
-            nomePlanoSelecionado = nome;
+            diasSelecionados = dias;
             
-            document.querySelectorAll('.plan-card').forEach(card => {
-                card.classList.remove('selected');
-            });
+            document.getElementById('planoEscolhido').innerText = 'Plano ' + plano;
+            document.getElementById('valorEscolhido').innerText = 'R$ ' + valor;
             
-            document.querySelector(`[data-plan="${plano}"]`).classList.add('selected');
-            
-            document.getElementById('selectedPlanName').innerText = nome;
-            document.getElementById('selectedPlanPrice').innerText = `R$ ${valor}`;
-            document.getElementById('pixValue').innerText = `R$ ${valor},00`;
-            
-            const codigoPix = gerarCodigoPixSimulado(valor);
-            document.getElementById('pixCode').innerText = codigoPix;
-            
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(codigoPix)}`;
+            const codigoPix = gerarCodigoPix(DONO.pix, valor);
+            const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(codigoPix);
             document.getElementById('qrCodeImg').src = qrUrl;
             
-            document.getElementById('paymentArea').classList.add('active');
-            document.getElementById('paymentArea').scrollIntoView({ behavior: 'smooth' });
+            mostrarTela('pagamento');
+        }
+        
+        function gerarCodigoPix(chave, valor) {
+            const valorFormatado = parseFloat(valor).toFixed(2).replace('.', '');
+            return '00020126' + 
+                   '23' + 
+                   '0014BR.GOV.BCB.PIX' + 
+                   '01' + (chave.length.toString().padStart(2, '0')) + chave + 
+                   '52040000' + 
+                   '5303986' + 
+                   '54' + valorFormatado.length.toString().padStart(2, '0') + valorFormatado + 
+                   '5802BR' + 
+                   '5913SETPIX7' + 
+                   '6008BRASILIA' + 
+                   '62070503***' + 
+                   '6304F2B9';
+        }
+        
+        function copiarChavePix() {
+            navigator.clipboard.writeText(DONO.pix);
+            mostrarToast('✅ Chave PIX copiada: ' + DONO.pix);
+        }
+        
+        function voltarParaPlanos() {
+            mostrarTela('planos');
+        }
+        
+        function voltarParaPagamento() {
+            mostrarTela('pagamento');
+        }
+        
+        function solicitarConfirmacaoPagamento() {
+            document.getElementById('mensagemAguardando').style.display = 'block';
             
-            mostrarToast(`✅ Plano ${nome} selecionado!`);
-        }
-
-        function gerarCodigoPixSimulado(valor) {
-            const timestamp = Date.now().toString(36).toUpperCase();
-            const random = Math.random().toString(36).substring(2).toUpperCase();
-            return `0002010014BR.GOV.BCB.PIX0120002TAP${valor}${timestamp}${random}52040000530398654${valor.toFixed(2).replace('.', '')}5802BR59122TAP GOLD6009SAO PAULO62070503***6304E1F2`;
-        }
-
-        function copiarCodigoPix() {
-            const codigo = document.getElementById('pixCode').innerText;
-            if (codigo.includes('Selecione')) {
-                mostrarToast('❌ Selecione um plano primeiro!');
-                return;
-            }
-            navigator.clipboard.writeText(codigo);
-            mostrarToast('✅ Código PIX copiado!');
-        }
-
-        function voltarPlanos() {
-            document.getElementById('paymentArea').classList.remove('active');
-            document.querySelectorAll('.plan-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-        }
-
-        function confirmarPagamento() {
-            if (!planoSelecionado) {
-                mostrarToast('❌ Selecione um plano primeiro!');
-                return;
-            }
+            const solicitacao = {
+                valor: valorSelecionado,
+                plano: planoSelecionado,
+                data: new Date().toISOString()
+            };
             
-            document.getElementById('plansScreen').style.display = 'none';
-            document.getElementById('loginScreen').classList.add('active');
-            mostrarToast('✅ Pagamento confirmado! Faça login ou cadastre-se.');
-        }
-
-        function mostrarTelaLogin() {
-            document.getElementById('plansScreen').style.display = 'none';
-            document.getElementById('loginScreen').classList.add('active');
-        }
-
-        function voltarInicio() {
-            document.getElementById('loginScreen').classList.remove('active');
-            document.getElementById('plansScreen').style.display = 'block';
-        }
-
-        // ==================== FUNÇÕES DA TELA 2: LOGIN ====================
-        function fazerLogin() {
-            const user = document.getElementById('loginUser').value;
-            const pass = document.getElementById('loginPass').value;
+            pagamentosPendentes.push(solicitacao);
+            salvarPagamentosPendentes();
             
-            if (!user || !pass) {
-                mostrarToast('❌ Preencha usuário e senha!');
+            mostrarToast('✅ Solicitação enviada! Aguarde confirmação do dono.');
+        }
+        
+        function confirmarPagamento(index) {
+            if (localStorage.getItem('usuario_logado') !== 'dono') {
+                mostrarToast('❌ Acesso negado');
                 return;
             }
             
-            const usuarioSalvo = localStorage.getItem('usuario_' + user);
-            
-            if (usuarioSalvo) {
-                const dados = JSON.parse(usuarioSalvo);
-                if (dados.senha === pass) {
-                    document.getElementById('loginScreen').classList.remove('active');
-                    document.getElementById('pixGeneratorScreen').classList.add('active');
-                    
-                    document.getElementById('displayAgencia').innerText = localStorage.getItem('agencia') || '1234';
-                    document.getElementById('displayConta').innerText = localStorage.getItem('conta') || '56789-1';
-                    
-                    mostrarToast('✅ Login realizado com sucesso!');
-                } else {
-                    mostrarToast('❌ Senha incorreta!');
-                }
-            } else {
-                mostrarToast('❌ Usuário não encontrado!');
+            pagamentosPendentes.splice(index, 1);
+            salvarPagamentosPendentes();
+            mostrarToast('✅ Pagamento confirmado! Avise o cliente para criar conta.');
+            atualizarPainelAdmin();
+        }
+        
+        function recusarPagamento(index) {
+            if (localStorage.getItem('usuario_logado') !== 'dono') {
+                mostrarToast('❌ Acesso negado');
+                return;
             }
+            
+            pagamentosPendentes.splice(index, 1);
+            salvarPagamentosPendentes();
+            mostrarToast('❌ Pagamento recusado');
+            atualizarPainelAdmin();
         }
-
-        function mostrarCadastro() {
-            document.getElementById('loginScreen').classList.remove('active');
-            document.getElementById('registerScreen').classList.add('active');
-        }
-
-        function voltarLogin() {
-            document.getElementById('registerScreen').classList.remove('active');
-            document.getElementById('loginScreen').classList.add('active');
-        }
-
-        // ==================== FUNÇÕES DA TELA 3: CADASTRO ====================
+        
+        // ==================== FUNÇÕES DE CADASTRO ====================
         function finalizarCadastro() {
-            const user = document.getElementById('regUser').value;
-            const email = document.getElementById('regEmail').value;
-            const senha = document.getElementById('regPass').value;
-            const confirmSenha = document.getElementById('regConfirmPass').value;
+            const nome = document.getElementById('cadNome').value;
+            const email = document.getElementById('cadEmail').value;
+            const senha = document.getElementById('cadSenha').value;
             
-            const errorDiv = document.getElementById('registerError');
-            const successDiv = document.getElementById('registerSuccess');
-            
-            errorDiv.style.display = 'none';
-            successDiv.style.display = 'none';
-            
-            if (!user || !email || !senha || !confirmSenha) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ Preencha todos os campos!';
+            if (!nome || !email || !senha) {
+                mostrarToast('❌ Preencha todos os campos');
                 return;
             }
             
-            if (senha !== confirmSenha) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ As senhas não coincidem!';
+            if (usuarios.find(u => u.email === email)) {
+                mostrarToast('❌ E-mail já cadastrado');
                 return;
             }
             
-            if (senha.length < 4) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ A senha deve ter pelo menos 4 caracteres!';
-                return;
-            }
+            const expiracao = new Date();
+            expiracao.setDate(expiracao.getDate() + diasSelecionados);
             
-            if (!email.includes('@') || !email.includes('.')) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ Email inválido!';
-                return;
-            }
-            
-            if (localStorage.getItem('usuario_' + user)) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerText = '❌ Usuário já existe! Escolha outro.';
-                return;
-            }
-            
-            const usuarioDados = {
-                usuario: user,
+            const novoUsuario = {
+                id: usuarios.length + 1,
+                nome: nome,
                 email: email,
                 senha: senha,
-                dataCadastro: new Date().toLocaleString()
+                plano: planoSelecionado,
+                valor: valorSelecionado,
+                dataPagamento: new Date().toISOString(),
+                expiracao: expiracao.toISOString()
             };
             
-            localStorage.setItem('usuario_' + user, JSON.stringify(usuarioDados));
-            localStorage.setItem('ultimoUsuario', user);
+            usuarios.push(novoUsuario);
+            salvarUsuarios();
+            usuarioAtual = novoUsuario;
             
-            successDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                document.getElementById('registerScreen').classList.remove('active');
-                document.getElementById('bankScreen').classList.add('active');
-            }, 2000);
+            mostrarTela('painel');
+            atualizarPainelUsuario();
+            mostrarToast('✅ Cadastro realizado! Acesso liberado.');
         }
-
-        // ==================== FUNÇÕES DA TELA 4: DADOS BANCÁRIOS ====================
-        function salvarDadosBancarios() {
-            const agencia = document.getElementById('bankAgencia').value;
-            const conta = document.getElementById('bankConta').value;
-            const digito = document.getElementById('bankDigito').value;
+        
+        function atualizarPainelUsuario() {
+            if (!usuarioAtual) return;
             
-            if (!agencia || !conta || !digito) {
-                mostrarToast('❌ Preencha todos os dados bancários!');
-                return;
-            }
+            document.getElementById('nomeUsuario').innerText = usuarioAtual.nome.split(' ')[0];
+            document.getElementById('planoUsuario').innerText = 'Plano ' + usuarioAtual.plano;
             
-            localStorage.setItem('agencia', agencia);
-            localStorage.setItem('conta', `${conta}-${digito}`);
-            
-            document.getElementById('bankScreen').classList.remove('active');
-            document.getElementById('pixGeneratorScreen').classList.add('active');
-            
-            document.getElementById('displayAgencia').innerText = agencia;
-            document.getElementById('displayConta').innerText = `${conta}-${digito}`;
-            
-            mostrarToast('✅ Dados salvos com sucesso!');
+            const expiracao = new Date(usuarioAtual.expiracao);
+            const hoje = new Date();
+            const dias = Math.ceil((expiracao - hoje) / (1000 * 60 * 60 * 24));
+            document.getElementById('diasRestantes').innerText = dias + ' dias restantes';
         }
-
-        // ==================== FUNÇÕES DA TELA 5: GERADOR PIX ====================
-        function gerarPix() {
-            const chave = document.getElementById('pixChave').value;
-            const valor = document.getElementById('pixValor').value;
-            const descricao = document.getElementById('pixDescricao').value;
+        
+        // ==================== FUNÇÕES DO GERADOR AVANÇADO ====================
+        let modoPix = true; // true = Pix, false = TED
+        
+        function toggleTipoRecebedor() {
+            modoPix = !modoPix;
+            const btn = document.getElementById('btnToggleTipo');
+            const areaPix = document.getElementById('areaPix');
+            const areaTed = document.getElementById('areaTed');
             
-            if (!chave) {
-                mostrarToast('❌ Digite a chave Pix do recebedor!');
-                return;
+            if (modoPix) {
+                btn.innerText = '🔁 Alternar para Dados Bancários';
+                areaPix.style.display = 'block';
+                areaTed.style.display = 'none';
+            } else {
+                btn.innerText = '🔁 Alternar para Chave Pix';
+                areaPix.style.display = 'none';
+                areaTed.style.display = 'block';
             }
+        }
+        
+        function gerarPagamento() {
+            const valor = document.getElementById('valorPix').value;
+            const origemAgencia = document.getElementById('origemAgencia').value;
+            const origemConta = document.getElementById('origemConta').value;
             
             if (!valor || valor <= 0) {
-                mostrarToast('❌ Digite um valor válido!');
+                mostrarToast('❌ Informe um valor válido');
                 return;
             }
             
-            const valorStr = parseFloat(valor).toFixed(2).replace('.', '');
-            const codigo = `0002010014BR.GOV.BCB.PIX01${chave.length.toString().padStart(2,'0')}${chave}52040000530398654${valorStr}5802BR59122TAP GOLD6009SAO PAULO62${descricao || 'PIX'}6304E1F2`;
+            let resultado = '';
+            let qrCodeUrl = '';
             
-            document.getElementById('pixCodigo').innerText = codigo;
-            
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(codigo)}`;
-            document.getElementById('pixQrCode').src = qrUrl;
-            
-            document.getElementById('pixResultArea').classList.add('active');
-            mostrarToast('✅ Pix gerado com sucesso!');
-        }
-
-        function copiarPixGerado() {
-            const codigo = document.getElementById('pixCodigo').innerText;
-            if (codigo.includes('Clique em')) {
-                mostrarToast('❌ Gere um Pix primeiro!');
-                return;
-            }
-            navigator.clipboard.writeText(codigo);
-            mostrarToast('✅ Código Pix copiado!');
-        }
-
-        function selecionarContato(contato) {
-            document.querySelectorAll('.contact-card').forEach(c => c.classList.remove('selected'));
-            document.getElementById(`contact${contato.charAt(0).toUpperCase() + contato.slice(1)}`).classList.add('selected');
-            contatoSelecionado = contato;
-        }
-
-        function enviarWhatsApp() {
-            if (!contatoSelecionado) {
-                mostrarToast('❌ Selecione um contato!');
-                return;
-            }
-            
-            const valor = document.getElementById('pixValor').value;
-            const chave = document.getElementById('pixChave').value;
-            const codigo = document.getElementById('pixCodigo').innerText;
-            
-            if (codigo.includes('Clique em')) {
-                mostrarToast('❌ Gere um Pix primeiro!');
-                return;
-            }
-            
-            const contatos = {
-                joao: { nome: 'João', numero: '5511999999999' },
-                maria: { nome: 'Maria', numero: '5511888888888' },
-                pedro: { nome: 'Pedro', numero: '5511777777777' },
-                grupo: { nome: 'Grupo', numero: 'grupo' }
-            };
-            
-            const mensagem = `🏦 *PAGAMENTO 2TAP*\n\n💰 *Valor:* R$ ${valor}\n📱 *Chave:* ${chave}\n\n📋 *Código Pix:*\n\`${codigo}\`\n\n✅ PIX gerado via 2TAP`;
-            
-            if (contatoSelecionado === 'grupo') {
-                navigator.clipboard.writeText(mensagem);
-                mostrarToast('📱 Mensagem copiada para colar no grupo!');
+            if (modoPix) {
+                // Modo PIX
+                const chave = document.getElementById('chaveCliente').value;
+                if (!chave) {
+                    mostrarToast('❌ Informe a chave Pix do recebedor');
+                    return;
+                }
+                
+                const codigo = gerarCodigoPix(chave, valor);
+                qrCodeUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(codigo);
+                
+                resultado = `
+                    <strong>📋 CÓDIGO PIX:</strong><br>
+                    <div style="background:#111; padding:15px; border-radius:10px; word-break:break-all; margin:10px 0; color:#ff0000;">
+                        ${codigo}
+                    </div>
+                    <div style="text-align:center; margin:10px 0;">
+                        <img src="${qrCodeUrl}" style="width:150px; height:150px; background:white; padding:5px; border-radius:10px;">
+                    </div>
+                `;
             } else {
-                const url = `https://wa.me/${contatos[contatoSelecionado].numero}?text=${encodeURIComponent(mensagem)}`;
-                window.open(url, '_blank');
+                // Modo TED/DOC
+                const banco = document.getElementById('tedBanco').value;
+                const agencia = document.getElementById('tedAgencia').value;
+                const conta = document.getElementById('tedConta').value;
+                const tipoConta = document.getElementById('tedTipoConta').value;
+                const cpf = document.getElementById('tedCpf').value;
+                const nome = document.getElementById('tedNome').value;
+                
+                if (!banco || !agencia || !conta || !cpf || !nome) {
+                    mostrarToast('❌ Preencha todos os dados bancários');
+                    return;
+                }
+                
+                const dadosTransferencia = `
+                    🏦 DADOS PARA TRANSFERÊNCIA (TED/DOC)
+                    
+                    💰 Valor: R$ ${valor}
+                    
+                    📤 Dados de Origem (opcional):
+                    Agência: ${origemAgencia || '---'} | Conta: ${origemConta || '---'}
+                    
+                    📥 Dados do Recebedor:
+                    Banco: ${banco}
+                    Agência: ${agencia}
+                    Conta: ${conta} (${tipoConta})
+                    CPF/CNPJ: ${cpf}
+                    Nome: ${nome}
+                    
+                    ⚠️ Envie o comprovante após a transferência.
+                `;
+                
+                resultado = `
+                    <strong>📋 DADOS DA TRANSFERÊNCIA:</strong><br>
+                    <div style="background:#111; padding:15px; border-radius:10px; white-space:pre-wrap; margin:10px 0; color:#ff0000;">
+                        ${dadosTransferencia}
+                    </div>
+                `;
             }
+            
+            // Adiciona dados de origem se informados
+            if (origemAgencia && origemConta) {
+                resultado += `<div style="margin-top:10px; color:#ccc;">📤 Conta de origem: Ag ${origemAgencia} | Conta ${origemConta}</div>`;
+            }
+            
+            // Botões de ação
+            resultado += `
+                <div style="display:flex; gap:10px; margin-top:15px;">
+                    <button class="btn-gerar" style="background:#ff0000; margin:0;" onclick="copiarTexto('${modoPix ? document.getElementById('chaveCliente').value : ''}')">📋 COPIAR</button>
+                    <button class="btn-gerar" style="background:#25D366; margin:0;" onclick="enviarWhatsAppPagamento()">📲 WHATSAPP</button>
+                </div>
+            `;
+            
+            document.getElementById('resultadoPix').style.display = 'block';
+            document.getElementById('resultadoPix').innerHTML = resultado;
         }
-
-        // ==================== FUNÇÕES UTILITÁRIAS ====================
-        function toggleSupport() {
-            document.getElementById('supportModal').classList.toggle('active');
+        
+        function copiarTexto(texto) {
+            navigator.clipboard.writeText(texto);
+            mostrarToast('✅ Código copiado!');
         }
-
-        function abrirTelegram() {
-            window.open('https://t.me/suporte_2tap', '_blank');
+        
+        function enviarWhatsAppPagamento() {
+            let mensagem = '';
+            const valor = document.getElementById('valorPix').value;
+            
+            if (modoPix) {
+                const chave = document.getElementById('chaveCliente').value;
+                const codigo = gerarCodigoPix(chave, valor);
+                mensagem = `🏦 *PAGAMENTO VIA PIX*\n\n💰 *Valor:* R$ ${valor}\n🔑 *Chave:* ${chave}\n\n📋 *Código PIX:*\n\`${codigo}\``;
+            } else {
+                const banco = document.getElementById('tedBanco').value;
+                const agencia = document.getElementById('tedAgencia').value;
+                const conta = document.getElementById('tedConta').value;
+                const tipoConta = document.getElementById('tedTipoConta').value;
+                const cpf = document.getElementById('tedCpf').value;
+                const nome = document.getElementById('tedNome').value;
+                
+                mensagem = `🏦 *TRANSFERÊNCIA BANCÁRIA*\n\n💰 *Valor:* R$ ${valor}\n\n📥 *Dados do Recebedor:*\nBanco: ${banco}\nAgência: ${agencia}\nConta: ${conta} (${tipoConta})\nCPF: ${cpf}\nNome: ${nome}`;
+            }
+            
+            window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`, '_blank');
         }
-
+        
         function mostrarToast(msg) {
             const toast = document.getElementById('toast');
             toast.style.display = 'block';
@@ -1505,28 +1330,11 @@
                 toast.style.display = 'none';
             }, 3000);
         }
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' && document.getElementById('pixGeneratorScreen').classList.contains('active')) {
-                event.preventDefault();
-                gerarPix();
-            }
-        });
-
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('supportModal');
-            const button = document.querySelector('.support-button');
-            
-            if (button && !button.contains(event.target) && modal && !modal.contains(event.target)) {
-                modal.classList.remove('active');
-            }
-        });
-
+        
         window.onload = function() {
-            const ultimoUsuario = localStorage.getItem('ultimoUsuario');
-            if (ultimoUsuario) {
-                document.getElementById('loginUser').value = ultimoUsuario;
-            }
+            carregarUsuarios();
+            atualizarVisibilidadeBotaoDono();
+            mostrarTela('planos');
         };
     </script>
 </body>
